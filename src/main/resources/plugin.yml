@@ -1,0 +1,8 @@
+name: MineStead
+version: '1.0'
+main: me.lyamray.minestead.MineStead
+api-version: '1.21'
+load: STARTUP
+authors: [ LyamRay ]
+description: Create your own homestead in minecraft!
+website: https://github.com/LyamRay
