@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.lyamray.minestead.database.Database;
-import me.lyamray.minestead.animals.data.AnimalData;
+import me.lyamray.minestead.animal.data.AnimalData;
 import me.lyamray.minestead.player.data.PlayerData;
 
 import java.sql.SQLException;

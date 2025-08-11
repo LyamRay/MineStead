@@ -1,4 +1,4 @@
-package me.lyamray.minestead.animals.data;
+package me.lyamray.minestead.animal.data;
 
 import lombok.*;
 
