@@ -5,8 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.lyamray.minestead.database.Database;
-import me.lyamray.minestead.player.data.AnimalData;
-import me.lyamray.minestead.player.data.DataCache;
+import me.lyamray.minestead.animals.data.AnimalData;
 import me.lyamray.minestead.player.data.PlayerData;
 
 import java.sql.SQLException;
@@ -55,7 +54,7 @@ public class LoadFromDatabase {
                 int health = ((Number) row.get("health")).intValue();
 
                 AnimalData animalData = new AnimalData(uuid, ownerUuid, type, age, health);
-                DataCache.getInstance().getPlayerAnimalDataCache().put(uuid, animalData);
+                AnimalData.getInstance().getAnimalDataCache().put(uuid, animalData);
             }
         } catch (SQLException e) {
             log.warn("Could not load the animals from the database! ", e);
