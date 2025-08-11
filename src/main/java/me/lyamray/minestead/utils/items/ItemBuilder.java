@@ -1,6 +1,6 @@
 package me.lyamray.minestead.utils.items;
 
-import me.lyamray.minestead.utils.other.MiniMessage;
+import me.lyamray.minestead.utils.messages.MiniMessage;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;

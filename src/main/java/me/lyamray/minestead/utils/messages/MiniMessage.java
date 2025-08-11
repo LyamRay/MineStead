@@ -1,7 +1,8 @@
-package me.lyamray.minestead.utils.other;
+package me.lyamray.minestead.utils.messages;
 
 import lombok.experimental.UtilityClass;
 import net.kyori.adventure.text.Component;
+import org.bukkit.entity.Player;
 
 @UtilityClass
 public class MiniMessage {
@@ -9,6 +10,10 @@ public class MiniMessage {
 
     public Component deserializeMessage(String input) {
         return miniMessage.deserialize(input);
+    }
+
+    public void sendMessage(String input, Player player) {
+         player.sendMessage(miniMessage.deserialize(input));
     }
 
     public String serializeComponent(Component component) {
