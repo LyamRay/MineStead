@@ -1,4 +1,4 @@
-package me.lyamray.minestead.utils.Items;
+package me.lyamray.minestead.utils.items;
 
 import me.lyamray.minestead.utils.other.MiniMessage;
 import net.kyori.adventure.text.Component;
