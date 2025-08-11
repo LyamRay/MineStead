@@ -19,5 +19,6 @@ public class PlayerData {
     private UUID uuid;
     private int money;
     private int playtime;
+    private boolean tutorialFinished;
 
 }

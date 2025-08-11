@@ -33,6 +33,7 @@ public class SaveToDatabase {
         values.put("uuid", uuid.toString());
         values.put("money", data.getMoney());
         values.put("playtime", data.getPlaytime());
+        values.put("tutorialFinished", data.isTutorialFinished());
 
         saveOrUpdate("players", uuid.toString(), values);
     }

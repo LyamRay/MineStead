@@ -27,17 +27,18 @@ public class LoadFromDatabase {
             List<Map<String, Object>> result = database.get("players", "uuid = ?", uuid.toString());
 
             if (result.isEmpty()) {
-                return new PlayerData(uuid, 0, 0);
+                return null;
             }
 
             Map<String, Object> row = result.getFirst();
             int money = ((Number) row.get("money")).intValue();
             int playtime = ((Number) row.get("playtime")).intValue();
+            boolean tutorialFinished = ((boolean) row.get("tutorialFinished"));
 
-            return new PlayerData(uuid, money, playtime);
+            return new PlayerData(uuid, money, playtime, tutorialFinished);
         } catch (SQLException e) {
             log.warn("Could not load player data for UUID: {} - {}", uuid, e.getMessage());
-            return new PlayerData(uuid, 0, 0);
+            return null;
         }
     }
 

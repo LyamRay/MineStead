@@ -6,3 +6,4 @@ load: STARTUP
 authors: [ LyamRay ]
 description: Create your own homestead in minecraft!
 website: https://github.com/LyamRay
+bootstrapper: me.lyamray.minestead.tutorial.dialog.TutorialDecisionDialog

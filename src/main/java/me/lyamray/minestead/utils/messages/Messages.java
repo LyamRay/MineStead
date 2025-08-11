@@ -13,11 +13,17 @@ public enum Messages {
             .replace("{playername}", player.getName())),
 
     PLAYER_JOIN_MESSAGE(player -> ("<gray> • </gray><gradient:#ff9500:#a6ff00>Hey, {playername}!" +
-            " Fijn dat je terug bent gekomen. Veel plezier!</gradient>")
+            " Welkom terug op MineStead. Veel plezier!</gradient>")
             .replace("{playername}", player.getName())),
 
-    T1(player -> ""),
-    T2(player -> ""),
+    TUTORIAL_SKIPPED(player -> ("<gray> • </gray><gradient:#ff9500:#a6ff00>Jammer, {playername}!" +
+            " Je hebt de tutorial geskipped, maar wel je geld automatisch gekregen. Veel plezier!</gradient>")
+            .replace("{playername}", player.getName())),
+
+    TUTORIAL_COMPLETED(player -> ("<gray> • </gray><gradient:#ff9500:#a6ff00>Goedzo, {playername}!" +
+            " Je hebt de tutorial voltooid, je hebt je geld automatisch gekregen. Veel plezier!</gradient>")
+            .replace("{playername}", player.getName())),
+
     T3(player -> "");
 
     private final Function<Player, String> messageFunction;
