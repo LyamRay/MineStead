@@ -33,7 +33,7 @@ public class LoadFromDatabase {
             Map<String, Object> row = result.getFirst();
             int money = ((Number) row.get("money")).intValue();
             int playtime = ((Number) row.get("playtime")).intValue();
-            boolean tutorialFinished = ((boolean) row.get("tutorialFinished"));
+            boolean tutorialFinished = ((Number) row.get("tutorialFinished")).intValue() != 0;
 
             return new PlayerData(uuid, money, playtime, tutorialFinished);
         } catch (SQLException e) {
