@@ -3,8 +3,9 @@ package me.lyamray.minestead;
 import lombok.Getter;
 import me.lyamray.minestead.database.Database;
 import me.lyamray.minestead.database.load.LoadFromDatabase;
-import me.lyamray.minestead.player.listeners.PlayerLoginEvent;
-import me.lyamray.minestead.player.listeners.PlayerPreLoginEvent;
+import me.lyamray.minestead.database.save.SaveToDatabase;
+import me.lyamray.minestead.player.listeners.PlayerJoinListener;
+import me.lyamray.minestead.player.listeners.PlayerPreLoginListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -26,13 +27,14 @@ public final class MineStead extends JavaPlugin {
 
     @Override
     public void onDisable() {
-
+        SaveToDatabase.getInstance().saveAllPlayerData();
+        SaveToDatabase.getInstance().saveAllAnimalData();
     }
 
     private void registerListeners() {
         Arrays.asList(
-                new PlayerPreLoginEvent(),
-                new PlayerLoginEvent()
+                new PlayerPreLoginListener(),
+                new PlayerJoinListener()
         ).forEach(listener -> Bukkit.getPluginManager().registerEvents(listener, this));
     }
 

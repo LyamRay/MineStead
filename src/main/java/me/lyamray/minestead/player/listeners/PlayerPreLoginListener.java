@@ -10,7 +10,7 @@ import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
 import java.util.UUID;
 
 @Slf4j
-public class PlayerPreLoginEvent implements Listener {
+public class PlayerPreLoginListener implements Listener {
 
     @EventHandler
     public void playerLoginEvent(AsyncPlayerPreLoginEvent event) {
