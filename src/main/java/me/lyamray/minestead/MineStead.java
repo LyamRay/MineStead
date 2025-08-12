@@ -7,7 +7,8 @@ import me.lyamray.minestead.database.save.SaveToDatabase;
 import me.lyamray.minestead.player.listeners.PlayerJoinListener;
 import me.lyamray.minestead.player.listeners.PlayerPreLoginListener;
 import me.lyamray.minestead.player.listeners.PlayerQuitListener;
-import me.lyamray.minestead.tutorial.listeners.CustomClickEvent;
+import me.lyamray.minestead.tutorial.listeners.CustomClickListener;
+import me.lyamray.minestead.tutorial.listeners.PlayerMoveListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -38,7 +39,8 @@ public final class MineStead extends JavaPlugin {
                 new PlayerPreLoginListener(),
                 new PlayerJoinListener(),
                 new PlayerQuitListener(),
-                new CustomClickEvent()
+                new PlayerMoveListener(),
+                new CustomClickListener()
         ).forEach(listener -> Bukkit.getPluginManager().registerEvents(listener, this));
     }
 

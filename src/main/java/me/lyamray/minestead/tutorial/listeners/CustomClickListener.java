@@ -5,6 +5,7 @@ import io.papermc.paper.dialog.Dialog;
 import io.papermc.paper.event.player.PlayerCustomClickEvent;
 import me.lyamray.minestead.player.data.PlayerData;
 import me.lyamray.minestead.tutorial.dialog.TutorialDialog;
+import me.lyamray.minestead.tutorial.managers.TutorialManager;
 import me.lyamray.minestead.utils.messages.Messages;
 import me.lyamray.minestead.utils.messages.MiniMessage;
 import me.lyamray.minestead.utils.money.Money;
@@ -16,7 +17,7 @@ import org.bukkit.event.Listener;
 import java.util.UUID;
 
 @SuppressWarnings("UnstableApiUsage")
-public class CustomClickEvent implements Listener {
+public class CustomClickListener implements Listener {
 
     @EventHandler
     public void onTutorialDecision(PlayerCustomClickEvent event) {
@@ -29,23 +30,18 @@ public class CustomClickEvent implements Listener {
 
         Player player = conn.getPlayer();
         UUID playerUuid = player.getUniqueId();
-        PlayerData playerData = PlayerData.getInstance().getPlayerDataCache().get(playerUuid);
 
         switch (keyString) {
             case "minestead:tutorial-accepting/yes" -> {
-                if (playerData != null) {
-                    playerData.setTutorialFinished(false);
-                }
                 closeDialog(player);
+                TutorialManager.getInstance().handleDialog(player);
                 startFarmingTutorial(player);
             }
 
             case "minestead:tutorial-accepting/no" -> {
-                if (playerData != null) {
-                    playerData.setTutorialFinished(true);
-                }
                 closeDialog(player);
-                skipTutorial(player);
+                TutorialManager.getInstance().tutorialEnded(player);
+                MiniMessage.sendMessage(Messages.TUTORIAL_SKIPPED.getMessage(player), player);
             }
 
             case "minestead:farming-accepting/yes" -> {
@@ -73,7 +69,8 @@ public class CustomClickEvent implements Listener {
 
             case "minestead:animals-accepting/no" -> {
                 closeDialog(player);
-                tutorialEnded(player);
+                MiniMessage.sendMessage(Messages.TUTORIAL_COMPLETED.getMessage(player), player);
+                TutorialManager.getInstance().tutorialEnded(player);
             }
 
             default -> {
@@ -84,6 +81,10 @@ public class CustomClickEvent implements Listener {
 
     private void closeDialog(Player player) {
         player.closeDialog();
+    }
+
+    private void handleFarmingTutorial() {
+
     }
 
     private void startFarmingTutorial(Player player) {
@@ -132,30 +133,5 @@ public class CustomClickEvent implements Listener {
                 Key.key("minestead:animals-accepting/no")
         );
         player.showDialog(animalDialog);
-    }
-
-    private void skipTutorial(Player player) {
-        MiniMessage.sendMessage(Messages.TUTORIAL_SKIPPED.getMessage(player), player);
-    }
-
-    private void tutorialEnded(Player player) {
-        PlayerData playerData = PlayerData.getInstance().getPlayerDataCache().get(player.getUniqueId());
-
-        if (playerData == null) {
-            MiniMessage.sendMessage(Messages.TUTORIAL_USER_DOES_NOT_EXIST.getMessage(player), player);
-            return;
-        }
-
-        int money = Money.getMoney(player);
-
-        if (!playerData.isTutorialFinished()) {
-            playerData.setTutorialFinished(true);
-            MiniMessage.sendMessage(Messages.TUTORIAL_COMPLETED.getMessage(player), player);
-            if (money != 0) {
-                Money.setMoney(player, 500);
-                return;
-            }
-            Money.addMoney(player, 500);
-        }
     }
 }

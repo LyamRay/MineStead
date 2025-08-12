@@ -8,6 +8,8 @@ import java.util.function.Function;
 @Getter
 public enum Messages {
 
+    //PlayerJoin Messages
+
     PLAYER_FIRST_TIME_JOIN_MESSAGE(player -> ("<gray> • </gray><gradient:#ff9500:#a6ff00>Hey, {playername}!" +
             " Fijn dat je voor de eerste keer joined! Volg de tutorial om je eigen Home-Stead te creëren. Veel plezier!</gradient>")
             .replace("{playername}", player.getName())),
@@ -15,6 +17,9 @@ public enum Messages {
     PLAYER_JOIN_MESSAGE(player -> ("<gray> • </gray><gradient:#ff9500:#a6ff00>Hey, {playername}!" +
             " Welkom terug op MineStead. Veel plezier!</gradient>")
             .replace("{playername}", player.getName())),
+
+
+    //Tutorial Messages
 
     TUTORIAL_SKIPPED(player -> ("<gray> • </gray><gradient:#ff9500:#a6ff00>Jammer, {playername}!" +
             " Je hebt de tutorial geskipped, maar wel je geld automatisch gekregen. Veel plezier!</gradient>")
@@ -29,6 +34,7 @@ public enum Messages {
             .replace("{playername}", player.getName())),
 
     T3(player -> "");
+
 
     private final Function<Player, String> messageFunction;
 

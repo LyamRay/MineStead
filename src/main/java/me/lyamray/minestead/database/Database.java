@@ -27,6 +27,7 @@ public class Database {
     private Connection connection;
 
     public void setupDatabase() {
+        log.info("Hey Guys!");
         MineStead mineStead = MineStead.getInstance();
         Path dataFolder = mineStead.getDataFolder().toPath();
 

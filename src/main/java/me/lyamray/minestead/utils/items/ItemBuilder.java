@@ -7,6 +7,8 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.Damageable;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.PotionType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +62,16 @@ public class ItemBuilder {
         if (meta instanceof Damageable damageable) {
             damageable.setDamage(durability);
             itemStack.setItemMeta(meta);
+        }
+        return this;
+    }
+    public ItemBuilder setPotionType(PotionType potionType) {
+        if (itemStack.getType() == Material.POTION) {
+            ItemMeta meta = itemStack.getItemMeta();
+            if (meta instanceof PotionMeta potionMeta) {
+                potionMeta.setBasePotionType(potionType);
+                itemStack.setItemMeta(potionMeta);
+            }
         }
         return this;
     }
