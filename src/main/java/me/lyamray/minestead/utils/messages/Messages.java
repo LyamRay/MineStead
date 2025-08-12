@@ -24,6 +24,10 @@ public enum Messages {
             " Je hebt de tutorial voltooid, je hebt je geld automatisch gekregen. Veel plezier!</gradient>")
             .replace("{playername}", player.getName())),
 
+    TUTORIAL_USER_DOES_NOT_EXIST(player -> ("<gray> • </gray><gradient:#ff9500:#a6ff00>Jammer, {playername}!" +
+            " Je hebt de tutorial voltooid, alleen je account blijkt niet te bestaan! Neem contact op met een server-admin.</gradient>")
+            .replace("{playername}", player.getName())),
+
     T3(player -> "");
 
     private final Function<Player, String> messageFunction;
