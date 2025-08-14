@@ -1,8 +1,7 @@
-package me.lyamray.minestead.tutorial.handlers;
+package me.lyamray.minestead.tutorial.dialog.farming.handlers;
 
 import lombok.Getter;
 import lombok.Setter;
-import me.lyamray.minestead.tutorial.listeners.shared.CustomClickListener;
 import me.lyamray.minestead.utils.items.ItemStacks;
 import me.lyamray.minestead.utils.messages.Messages;
 import me.lyamray.minestead.utils.messages.MiniMessage;
@@ -51,7 +50,6 @@ public class FarmingDialogHandler {
         }, 20L);
         TimerUtil.runTaskLater(() -> {
             player.getInventory().clear();
-            CustomClickListener.getInstace().handleFarmingTutorial(player);
         }, 60L);
     }
 

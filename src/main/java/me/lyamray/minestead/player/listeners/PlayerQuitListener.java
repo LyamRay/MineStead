@@ -2,7 +2,7 @@ package me.lyamray.minestead.player.listeners;
 
 import lombok.extern.slf4j.Slf4j;
 import me.lyamray.minestead.database.save.SaveToDatabase;
-import me.lyamray.minestead.tutorial.handlers.FarmingDialogHandler;
+import me.lyamray.minestead.tutorial.dialog.farming.handlers.FarmingDialogHandler;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

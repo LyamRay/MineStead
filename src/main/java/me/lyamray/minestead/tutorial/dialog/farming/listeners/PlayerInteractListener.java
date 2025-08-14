@@ -1,9 +1,8 @@
-package me.lyamray.minestead.tutorial.listeners.farming;
+package me.lyamray.minestead.tutorial.dialog.farming.listeners;
 
-import me.lyamray.minestead.tutorial.dialog.TutorialDecisionDialog;
-import me.lyamray.minestead.tutorial.handlers.FarmingDialogHandler;
+import me.lyamray.minestead.tutorial.dialog.farming.handlers.FarmingDialogHandler;
+import me.lyamray.minestead.tutorial.dialog.start.StartTutorial;
 import me.lyamray.minestead.utils.items.ItemStacks;
-import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -21,7 +20,7 @@ public class PlayerInteractListener implements Listener {
 
         if (event.getHand() != EquipmentSlot.HAND) return;
         if (event.getAction() != Action.RIGHT_CLICK_BLOCK && event.getAction() != Action.RIGHT_CLICK_AIR) return;
-        if (!TutorialDecisionDialog.getInstance().getHasAcceptedTutorial()
+        if (!StartTutorial.getInstance().getHasAcceptedTutorial()
                 .containsKey(player.getUniqueId())) return;
         if (item == null || !item.isSimilar(ItemStacks.leegWaterFlesje(1))) return;
 

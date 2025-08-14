@@ -1,6 +1,6 @@
 package me.lyamray.minestead.player.listeners;
 
-import me.lyamray.minestead.tutorial.dialog.TutorialDecisionDialog;
+import me.lyamray.minestead.tutorial.dialog.start.StartTutorial;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,7 +15,7 @@ public class PlayerMoveListener implements Listener {
         Player player = event.getPlayer();
         UUID uuid = player.getUniqueId();
 
-        if (TutorialDecisionDialog.getInstance().getHasAcceptedTutorial().containsKey(uuid)) {
+        if (StartTutorial.getInstance().getHasAcceptedTutorial().containsKey(uuid)) {
             event.setTo(event.getFrom().setDirection(event.getTo().getDirection()));
         }
     }

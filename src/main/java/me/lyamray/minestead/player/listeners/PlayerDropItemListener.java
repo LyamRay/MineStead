@@ -1,6 +1,6 @@
 package me.lyamray.minestead.player.listeners;
 
-import me.lyamray.minestead.tutorial.dialog.TutorialDecisionDialog;
+import me.lyamray.minestead.tutorial.dialog.start.StartTutorial;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
@@ -9,7 +9,7 @@ public class PlayerDropItemListener implements Listener {
 
     @EventHandler
     public void onItemDropEvent(PlayerDropItemEvent event) {
-        if (TutorialDecisionDialog.getInstance().getHasAcceptedTutorial().containsKey(event.getPlayer().getUniqueId())) {
+        if (StartTutorial.getInstance().getHasAcceptedTutorial().containsKey(event.getPlayer().getUniqueId())) {
             event.setCancelled(true);
         }
     }

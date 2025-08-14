@@ -1,6 +1,7 @@
-package me.lyamray.minestead.tutorial.dialog;
+package me.lyamray.minestead.tutorial.dialog.template;
 
 import io.papermc.paper.dialog.Dialog;
+import io.papermc.paper.dialog.DialogResponseView;
 import io.papermc.paper.registry.data.dialog.ActionButton;
 import io.papermc.paper.registry.data.dialog.DialogBase;
 import io.papermc.paper.registry.data.dialog.action.DialogAction;
@@ -8,25 +9,29 @@ import io.papermc.paper.registry.data.dialog.body.DialogBody;
 import io.papermc.paper.registry.data.dialog.type.DialogType;
 import lombok.Getter;
 import me.lyamray.minestead.utils.messages.MiniMessage;
-import net.kyori.adventure.key.Key;
+import net.kyori.adventure.audience.Audience;
+import net.kyori.adventure.text.event.ClickCallback;
 
 import java.util.List;
+import java.util.function.BiConsumer;
 
 @SuppressWarnings("UnstableApiUsage")
-public class TutorialDialog {
+public class DialogTemplate {
 
     @Getter
-    private static final TutorialDialog instance = new TutorialDialog();
+    private static final DialogTemplate instance = new DialogTemplate();
 
-    public Dialog createDialog(
+    public Dialog createDialogWithCallbacks(
             String title,
             String bodyText,
             String positiveText,
             String positiveTooltip,
-            Key positiveKey,
+            int positiveWidth,
+            BiConsumer<DialogResponseView, Audience> positiveAction,
             String negativeText,
             String negativeTooltip,
-            Key negativeKey) {
+            int negativeWidth,
+            BiConsumer<DialogResponseView, Audience> negativeAction) {
 
         return Dialog.create(builder -> builder
                 .empty()
@@ -40,14 +45,24 @@ public class TutorialDialog {
                         ActionButton.create(
                                 MiniMessage.deserializeMessage(positiveText),
                                 MiniMessage.deserializeMessage(positiveTooltip),
-                                100,
-                                DialogAction.customClick(positiveKey, null)
+                                positiveWidth,
+                                DialogAction.customClick(
+                                        positiveAction::accept,
+                                        ClickCallback.Options.builder()
+                                                .uses(1)
+                                                .build()
+                                )
                         ),
                         ActionButton.create(
                                 MiniMessage.deserializeMessage(negativeText),
                                 MiniMessage.deserializeMessage(negativeTooltip),
-                                100,
-                                DialogAction.customClick(negativeKey, null)
+                                negativeWidth,
+                                DialogAction.customClick(
+                                        negativeAction::accept,
+                                        ClickCallback.Options.builder()
+                                                .uses(1)
+                                                .build()
+                                )
                         )
                 ))
         );

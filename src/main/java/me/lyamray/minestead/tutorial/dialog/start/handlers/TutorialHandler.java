@@ -1,8 +1,8 @@
-package me.lyamray.minestead.tutorial.handlers;
+package me.lyamray.minestead.tutorial.dialog.start.handlers;
 
 import lombok.Getter;
 import me.lyamray.minestead.player.data.PlayerData;
-import me.lyamray.minestead.tutorial.dialog.TutorialDecisionDialog;
+import me.lyamray.minestead.tutorial.dialog.start.StartTutorial;
 import me.lyamray.minestead.utils.messages.Messages;
 import me.lyamray.minestead.utils.messages.MiniMessage;
 import me.lyamray.minestead.utils.money.Money;
@@ -51,10 +51,12 @@ public class TutorialHandler {
             playerData.setTutorialFinished(true);
             if (money != 0) {
                 Money.setMoney(player, 500);
+                TutorialHandler.getInstance().stopHandlingDialog(player);
                 return;
             }
 
-            TutorialDecisionDialog.getInstance().getHasAcceptedTutorial().remove(player.getUniqueId());
+            MiniMessage.sendMessage(Messages.TUTORIAL_COMPLETED.getMessage(player), player);
+            StartTutorial.getInstance().getHasAcceptedTutorial().remove(player.getUniqueId());
             TutorialHandler.getInstance().stopHandlingDialog(player);
             Money.addMoney(player, 500);
         }

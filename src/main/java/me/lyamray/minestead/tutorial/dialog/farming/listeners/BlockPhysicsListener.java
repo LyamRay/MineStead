@@ -1,7 +1,7 @@
-package me.lyamray.minestead.tutorial.listeners.farming;
+package me.lyamray.minestead.tutorial.dialog.farming.listeners;
 
-import me.lyamray.minestead.tutorial.dialog.TutorialDecisionDialog;
-import me.lyamray.minestead.tutorial.handlers.FarmingDialogHandler;
+import me.lyamray.minestead.tutorial.dialog.farming.handlers.FarmingDialogHandler;
+import me.lyamray.minestead.tutorial.dialog.start.StartTutorial;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
@@ -16,7 +16,7 @@ public class BlockPhysicsListener implements Listener {
         Location blockLoc = block.getLocation();
 
         if (FarmingDialogHandler.getInstance().getWaterLocation().containsValue(blockLoc)
-                && !TutorialDecisionDialog.getInstance().getHasAcceptedTutorial().isEmpty()) {
+                && !StartTutorial.getInstance().getHasAcceptedTutorial().isEmpty()) {
             event.setCancelled(true);
         }
     }

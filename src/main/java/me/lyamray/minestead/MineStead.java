@@ -7,11 +7,10 @@ import me.lyamray.minestead.database.load.LoadFromDatabase;
 import me.lyamray.minestead.database.save.SaveToDatabase;
 import me.lyamray.minestead.license.LicenseChecker;
 import me.lyamray.minestead.player.listeners.*;
-import me.lyamray.minestead.tutorial.listeners.farming.BlockPhysicsListener;
-import me.lyamray.minestead.tutorial.listeners.shared.CustomClickListener;
+import me.lyamray.minestead.tutorial.dialog.farming.listeners.BlockPhysicsListener;
 import me.lyamray.minestead.player.listeners.PlayerMoveListener;
-import me.lyamray.minestead.tutorial.listeners.farming.PlayerInteractListener;
-import me.lyamray.minestead.tutorial.handlers.FarmingDialogHandler;
+import me.lyamray.minestead.tutorial.dialog.farming.listeners.PlayerInteractListener;
+import me.lyamray.minestead.tutorial.dialog.farming.handlers.FarmingDialogHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -56,7 +55,6 @@ public final class MineStead extends JavaPlugin {
                 new PlayerDropItemListener(),
                 new PlayerItemSwapListener(),
                 new BlockPhysicsListener(),
-                new CustomClickListener(),
                 new PlayerInteractListener()
         ).forEach(listener -> Bukkit.getPluginManager().registerEvents(listener, this));
     }
