@@ -1,4 +1,4 @@
-package me.lyamray.minestead.tutorial.listeners;
+package me.lyamray.minestead.player.listeners;
 
 import me.lyamray.minestead.tutorial.dialog.TutorialDecisionDialog;
 import org.bukkit.entity.Player;

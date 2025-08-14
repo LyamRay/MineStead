@@ -1,4 +1,4 @@
-package me.lyamray.minestead.tutorial.managers;
+package me.lyamray.minestead.tutorial.handlers;
 
 import lombok.Getter;
 import me.lyamray.minestead.player.data.PlayerData;
@@ -11,10 +11,10 @@ import org.bukkit.entity.Player;
 
 import java.util.Random;
 
-public class TutorialManager {
+public class TutorialHandler {
 
     @Getter
-    private static final TutorialManager instance = new TutorialManager();
+    private static final TutorialHandler instance = new TutorialHandler();
 
     public void handleDialog(Player player) {
         player.getInventory().clear();
@@ -55,7 +55,7 @@ public class TutorialManager {
             }
 
             TutorialDecisionDialog.getInstance().getHasAcceptedTutorial().remove(player.getUniqueId());
-            TutorialManager.getInstance().stopHandlingDialog(player);
+            TutorialHandler.getInstance().stopHandlingDialog(player);
             Money.addMoney(player, 500);
         }
     }

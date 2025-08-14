@@ -1,12 +1,13 @@
-package me.lyamray.minestead.tutorial.listeners;
+package me.lyamray.minestead.tutorial.listeners.shared;
 
 import io.papermc.paper.connection.PlayerGameConnection;
 import io.papermc.paper.dialog.Dialog;
 import io.papermc.paper.event.player.PlayerCustomClickEvent;
+import lombok.Getter;
 import me.lyamray.minestead.tutorial.dialog.TutorialDecisionDialog;
 import me.lyamray.minestead.tutorial.dialog.TutorialDialog;
-import me.lyamray.minestead.tutorial.managers.FarmingDialogManager;
-import me.lyamray.minestead.tutorial.managers.TutorialManager;
+import me.lyamray.minestead.tutorial.handlers.FarmingDialogHandler;
+import me.lyamray.minestead.tutorial.handlers.TutorialHandler;
 import me.lyamray.minestead.utils.messages.Messages;
 import me.lyamray.minestead.utils.messages.MiniMessage;
 import net.kyori.adventure.key.Key;
@@ -18,6 +19,9 @@ import java.util.UUID;
 
 @SuppressWarnings("UnstableApiUsage")
 public class CustomClickListener implements Listener {
+
+    @Getter
+    private static CustomClickListener instace = new CustomClickListener();
 
     @EventHandler
     public void onTutorialDecision(PlayerCustomClickEvent event) {
@@ -34,20 +38,20 @@ public class CustomClickListener implements Listener {
         switch (keyString) {
             case "minestead:tutorial-accepting/yes" -> {
                 closeDialog(player);
-                TutorialManager.getInstance().handleDialog(player);
+                TutorialHandler.getInstance().handleDialog(player);
                 TutorialDecisionDialog.getInstance().getHasAcceptedTutorial().putIfAbsent(uuid, true);
                 startFarmingTutorial(player);
             }
 
             case "minestead:tutorial-accepting/no" -> {
                 closeDialog(player);
-                TutorialManager.getInstance().tutorialEnded(player);
+                TutorialHandler.getInstance().tutorialEnded(player);
                 MiniMessage.sendMessage(Messages.TUTORIAL_SKIPPED.getMessage(player), player);
             }
 
             case "minestead:farming-accepting/yes" -> {
                 closeDialog(player);
-                FarmingDialogManager.getInstance().handleFarmingDialog(player);
+                FarmingDialogHandler.getInstance().handleFarmingDialog(player);
             }
 
             case "minestead:farming-accepting/no" -> {
@@ -71,7 +75,7 @@ public class CustomClickListener implements Listener {
             case "minestead:animals-accepting/no" -> {
                 closeDialog(player);
                 MiniMessage.sendMessage(Messages.TUTORIAL_COMPLETED.getMessage(player), player);
-                TutorialManager.getInstance().tutorialEnded(player);
+                TutorialHandler.getInstance().tutorialEnded(player);
             }
 
             default -> {
@@ -84,8 +88,9 @@ public class CustomClickListener implements Listener {
         player.closeDialog();
     }
 
-    private void handleFarmingTutorial() {
-
+    public void handleFarmingTutorial(Player player) {
+        startCommunityQuestTutorial(player);
+        //handle directly next tutorial (community)
     }
 
     private void startFarmingTutorial(Player player) {

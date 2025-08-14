@@ -1,7 +1,8 @@
-package me.lyamray.minestead.tutorial.managers;
+package me.lyamray.minestead.tutorial.handlers;
 
 import lombok.Getter;
 import lombok.Setter;
+import me.lyamray.minestead.tutorial.listeners.shared.CustomClickListener;
 import me.lyamray.minestead.utils.items.ItemStacks;
 import me.lyamray.minestead.utils.messages.Messages;
 import me.lyamray.minestead.utils.messages.MiniMessage;
@@ -16,10 +17,10 @@ import java.util.UUID;
 
 @Getter
 @Setter
-public class FarmingDialogManager {
+public class FarmingDialogHandler {
 
     @Getter
-    private static final FarmingDialogManager instance = new FarmingDialogManager();
+    private static final FarmingDialogHandler instance = new FarmingDialogHandler();
 
     private HashMap<UUID, Location> waterLocation = new HashMap<>();
 
@@ -44,9 +45,14 @@ public class FarmingDialogManager {
         }, 40L);
     }
 
-    public void tutorialCompleted(Player player) {
-
-
+    public void completed(Player player) {
+        TimerUtil.runTaskLater(() -> {
+            MiniMessage.sendMessage(Messages.FARMING_TUTORIAL_MESSAGE_3.getMessage(player), player);
+        }, 20L);
+        TimerUtil.runTaskLater(() -> {
+            player.getInventory().clear();
+            CustomClickListener.getInstace().handleFarmingTutorial(player);
+        }, 60L);
     }
 
     public void cleanUpWater() {

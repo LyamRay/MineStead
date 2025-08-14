@@ -34,8 +34,9 @@ public class PlayerJoinListener implements Listener {
                     : Messages.PLAYER_FIRST_TIME_JOIN_MESSAGE.getMessage(player);
 
             MiniMessage.sendMessage(message, player);
-
+            
             if (!playerData.isTutorialFinished()) {
+                player.getInventory().clear();
                 player.showDialog(TutorialDecisionDialog.getInstance().createTutorialConfirmDialog());
             }
 

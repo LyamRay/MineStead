@@ -7,11 +7,11 @@ import me.lyamray.minestead.database.load.LoadFromDatabase;
 import me.lyamray.minestead.database.save.SaveToDatabase;
 import me.lyamray.minestead.license.LicenseChecker;
 import me.lyamray.minestead.player.listeners.*;
-import me.lyamray.minestead.tutorial.listeners.BlockPhysicsListener;
-import me.lyamray.minestead.tutorial.listeners.CustomClickListener;
-import me.lyamray.minestead.tutorial.listeners.PlayerMoveListener;
-import me.lyamray.minestead.tutorial.listeners.TutorialWaterListener;
-import me.lyamray.minestead.tutorial.managers.FarmingDialogManager;
+import me.lyamray.minestead.tutorial.listeners.farming.BlockPhysicsListener;
+import me.lyamray.minestead.tutorial.listeners.shared.CustomClickListener;
+import me.lyamray.minestead.player.listeners.PlayerMoveListener;
+import me.lyamray.minestead.tutorial.listeners.farming.PlayerInteractListener;
+import me.lyamray.minestead.tutorial.handlers.FarmingDialogHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -43,7 +43,7 @@ public final class MineStead extends JavaPlugin {
     public void onDisable() {
         SaveToDatabase.getInstance().saveAllPlayerData();
         SaveToDatabase.getInstance().saveAllAnimalData();
-        FarmingDialogManager.getInstance().cleanUpWater();
+        FarmingDialogHandler.getInstance().cleanUpWater();
     }
 
     private void registerListeners() {
@@ -57,7 +57,7 @@ public final class MineStead extends JavaPlugin {
                 new PlayerItemSwapListener(),
                 new BlockPhysicsListener(),
                 new CustomClickListener(),
-                new TutorialWaterListener()
+                new PlayerInteractListener()
         ).forEach(listener -> Bukkit.getPluginManager().registerEvents(listener, this));
     }
 

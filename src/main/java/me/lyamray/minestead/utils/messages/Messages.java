@@ -33,16 +33,17 @@ public enum Messages {
             " Je hebt de tutorial voltooid, alleen je account blijkt niet te bestaan! Neem contact op met een server-admin.</gradient>")
             .replace("{playername}", player.getName())),
 
+
     // FarmingTutorial Messages
 
     FARMING_TUTORIAL_MESSAGE_1(player -> "<gray> • </gray><gradient:#ff9500:#a6ff00>Laten we beginnen met het water." +
             " Elke plant heeft natuurlijk water nodig!</gradient>"),
     FARMING_TUTORIAL_MESSAGE_2(player -> "<gray> • </gray><gradient:#ff9500:#a6ff00>Je hebt een leeg water flesje gekregen." +
             " Vul deze op in het water!</gradient>"),
+    FARMING_TUTORIAL_MESSAGE_3(player -> "<gray> • </gray><gradient:#ff9500:#a6ff00>Heel goed! We gaan nu door naar het volgende hoofstuk.</gradient>");
 
-    FARMING_TUTORIAL_MESSAGE_3(player -> ""),
-    FARMING_TUTORIAL_MESSAGE_4(player -> ""),
-    FARMING_TUTORIAL_MESSAGE_5(player -> "");
+
+
 
     private final Function<Player, String> messageFunction;
 
