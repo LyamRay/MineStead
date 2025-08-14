@@ -6,6 +6,7 @@ import me.lyamray.minestead.tutorial.dialog.TutorialDecisionDialog;
 import me.lyamray.minestead.utils.messages.Messages;
 import me.lyamray.minestead.utils.messages.MiniMessage;
 import net.kyori.adventure.text.Component;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -21,7 +22,8 @@ public class PlayerJoinListener implements Listener {
         Player player = event.getPlayer();
         UUID uuid = player.getUniqueId();
 
-        event.joinMessage(Component.text("")); //removes the default join message
+        event.joinMessage(Component.text(""));
+        player.setGameMode(GameMode.ADVENTURE);
 
         try {
             PlayerData playerData = PlayerData.getInstance().getPlayerDataCache().computeIfAbsent(uuid,

@@ -6,3 +6,6 @@ load: STARTUP
 authors: [ LyamRay ]
 description: Create your own homestead in minecraft!
 website: https://github.com/LyamRay
+commands:
+  resettut:
+    description: Test command for resetting the players tutorial!

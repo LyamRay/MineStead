@@ -23,7 +23,7 @@ public class TutorialDecisionDialog {
     @Getter
     private static final TutorialDecisionDialog instance = new TutorialDecisionDialog();
 
-    private HashMap<UUID, Boolean> hasAcceptedTutorial;
+    private HashMap<UUID, Boolean> hasAcceptedTutorial = new HashMap<>();
 
     public Dialog createTutorialConfirmDialog() {
         return Dialog.create(builder -> builder
@@ -42,13 +42,13 @@ public class TutorialDecisionDialog {
                 .type(DialogType.confirmation(
                         ActionButton.create(
                                 MiniMessage.deserializeMessage("<color:#c9ffe2>Start de tutorial.</color>"),
-                                MiniMessage.deserializeMessage("<gradient:#2f2e2d:#1e201f>Klik hier om de tutorial te starten!</gradient>"),
+                                MiniMessage.deserializeMessage("<color:#84968d>Klik hier om de tutorial te starten!</color>"),
                                 100,
                                 DialogAction.customClick(Key.key("minestead:tutorial-accepting/yes"), null)
                         ),
                         ActionButton.create(
                                 MiniMessage.deserializeMessage("<color:#b2ac9f>Skip de tutorial.</color>"),
-                                MiniMessage.deserializeMessage("<gradient:#2f2e2d:#1e201f>Klik hier om de tutorial te skippen!</gradient>"),
+                                MiniMessage.deserializeMessage("<color:#9c978e>Klik hier om de tutorial te skippen!</color>"),
                                 100,
                                 DialogAction.customClick(Key.key("minestead:tutorial-accepting/no"), null)
                         )

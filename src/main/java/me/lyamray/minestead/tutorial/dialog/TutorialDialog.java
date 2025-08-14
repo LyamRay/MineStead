@@ -9,7 +9,6 @@ import io.papermc.paper.registry.data.dialog.type.DialogType;
 import lombok.Getter;
 import me.lyamray.minestead.utils.messages.MiniMessage;
 import net.kyori.adventure.key.Key;
-import net.kyori.adventure.text.Component;
 
 import java.util.List;
 

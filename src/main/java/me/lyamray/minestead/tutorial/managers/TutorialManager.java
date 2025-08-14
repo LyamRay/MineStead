@@ -9,19 +9,30 @@ import me.lyamray.minestead.utils.money.Money;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
+import java.util.Random;
+
 public class TutorialManager {
 
     @Getter
     private static final TutorialManager instance = new TutorialManager();
 
     public void handleDialog(Player player) {
-        Location location = new Location(player.getWorld(), 0, 1000, 0);
+        player.getInventory().clear();
+        Random random = new Random();
+        double x = random.nextInt(2001) - 1000;
+        double z = random.nextInt(2001) - 1000;
+
+        double y = 300;
+        float yaw = 180f;
+        float pitch = 0f;
+
+        Location location = new Location(player.getWorld(), x, y, z, yaw, pitch).toCenterLocation();
         player.teleport(location);
         player.setGravity(false);
     }
 
     public void stopHandlingDialog(Player player) {
-        Location location = new Location(player.getWorld(), 0, 0, 0);
+        Location location = new Location(player.getWorld(), 0, 0, 0).toCenterLocation();
         player.teleport(location);
         player.setGravity(true);
     }

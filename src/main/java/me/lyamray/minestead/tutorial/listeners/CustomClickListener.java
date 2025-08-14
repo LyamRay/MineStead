@@ -3,12 +3,12 @@ package me.lyamray.minestead.tutorial.listeners;
 import io.papermc.paper.connection.PlayerGameConnection;
 import io.papermc.paper.dialog.Dialog;
 import io.papermc.paper.event.player.PlayerCustomClickEvent;
-import me.lyamray.minestead.player.data.PlayerData;
+import me.lyamray.minestead.tutorial.dialog.TutorialDecisionDialog;
 import me.lyamray.minestead.tutorial.dialog.TutorialDialog;
+import me.lyamray.minestead.tutorial.managers.FarmingDialogManager;
 import me.lyamray.minestead.tutorial.managers.TutorialManager;
 import me.lyamray.minestead.utils.messages.Messages;
 import me.lyamray.minestead.utils.messages.MiniMessage;
-import me.lyamray.minestead.utils.money.Money;
 import net.kyori.adventure.key.Key;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -29,12 +29,13 @@ public class CustomClickListener implements Listener {
         }
 
         Player player = conn.getPlayer();
-        UUID playerUuid = player.getUniqueId();
+        UUID uuid = player.getUniqueId();
 
         switch (keyString) {
             case "minestead:tutorial-accepting/yes" -> {
                 closeDialog(player);
                 TutorialManager.getInstance().handleDialog(player);
+                TutorialDecisionDialog.getInstance().getHasAcceptedTutorial().putIfAbsent(uuid, true);
                 startFarmingTutorial(player);
             }
 
@@ -46,7 +47,7 @@ public class CustomClickListener implements Listener {
 
             case "minestead:farming-accepting/yes" -> {
                 closeDialog(player);
-
+                FarmingDialogManager.getInstance().handleFarmingDialog(player);
             }
 
             case "minestead:farming-accepting/no" -> {
@@ -93,11 +94,11 @@ public class CustomClickListener implements Listener {
                 "<gradient:#b2ac9f:#abc4b9>Het beheren, verzorgen en onderhouden van jouw moestuin is " +
                         "de sleutel van een goede homestead.</gradient>",
                 "<color:#c9ffe2>Toon me hoe!</color>",
-                "<gradient:#2f2e2d:#1e201f>Klik hier om te leren hoe je moet planten, water geven " +
-                        "en je planten te oogsten!</gradient>",
+                "<color:#84968d>Klik hier om te leren hoe je moet planten, water geven " +
+                        "en je planten te oogsten!</color>",
                 Key.key("minestead:farming-accepting/yes"),
-                "<color:#b2ac9f>Ik weet dit al!</color>",
-                "<gradient:#2f2e2d:#1e201f>Klik hier om dit stukje van de tutorial over te slaan!</gradient>",
+                "<color:#d1c6ae>Ik weet dit al!</color>",
+                "<color:#9c978e>Klik hier om dit stukje van de tutorial over te slaan!</color>",
                 Key.key("minestead:farming-accepting/no")
         );
         player.showDialog(farmingDialog);
@@ -109,10 +110,10 @@ public class CustomClickListener implements Listener {
                 "<gradient:#b2ac9f:#abc4b9>Voltooi verschillende opdrachten en taken bij je buren om zo een " +
                         "goede reputatie te krijgen! Een hogere reputatie zal beloond worden!</gradient>",
                 "<color:#c9ffe2>Hoe werkt dit?</color>",
-                "<gradient:#2f2e2d:#1e201f>Klik hier om uitleg te krijgen over opdrachten en taken!</gradient>",
+                "<color:#84968d>Klik hier om uitleg te krijgen over opdrachten en taken!</color>",
                 Key.key("minestead:community-accepting/yes"),
-                "<color:#b2ac9f>Ik weet dit al!</color>",
-                "<gradient:#2f2e2d:#1e201f>Klik hier om dit stukje van de tutorial over te slaan!</gradient>",
+                "<color:#d1c6ae>Ik weet dit al!</color>",
+                "<color:#9c978e>Klik hier om dit stukje van de tutorial over te slaan!</color>",
                 Key.key("minestead:community-accepting/no")
         );
         player.showDialog(communityDialog);
@@ -124,12 +125,12 @@ public class CustomClickListener implements Listener {
                 "<gradient:#b2ac9f:#abc4b9>Het beheren, verzorgen en onderhouden van jouw dieren is de sleutel " +
                         "van een goede homestead!</gradient>",
                 "<color:#c9ffe2>Toon me hoe!</color>",
-                "<gradient:#2f2e2d:#1e201f>Klik hier om te leren hoe je dieren moet kopen, onderhouden, " +
-                        "slachten of breeden!</gradient>",
+                "<color:#84968d>Klik hier om te leren hoe je dieren moet kopen, onderhouden, " +
+                        "slachten of breeden!</color>",
                 Key.key("minestead:animals-accepting/yes"),
-                "<color:#b2ac9f>Ik weet dit al!</color>",
-                "<gradient:#2f2e2d:#1e201f>Klik hier om dit stukje van de tutorial over te slaan en " +
-                        "de tutorial te beëindigen!</gradient>",
+                "<color:#d1c6ae>Ik weet dit al!</color>",
+                "<color:#9c978e>Klik hier om dit stukje van de tutorial over te slaan en " +
+                        "de tutorial te beëindigen!</color>",
                 Key.key("minestead:animals-accepting/no")
         );
         player.showDialog(animalDialog);
