@@ -4,12 +4,10 @@ import io.papermc.paper.dialog.Dialog;
 import lombok.Getter;
 import lombok.Setter;
 import me.lyamray.minestead.tutorial.dialog.farming.StartFarmingDialog;
-import me.lyamray.minestead.tutorial.dialog.farming.handlers.FarmingDialogHandler;
 import me.lyamray.minestead.tutorial.dialog.start.handlers.TutorialHandler;
 import me.lyamray.minestead.tutorial.dialog.template.DialogTemplate;
 import me.lyamray.minestead.utils.messages.Messages;
 import me.lyamray.minestead.utils.messages.MiniMessage;
-import net.kyori.adventure.key.Key;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
