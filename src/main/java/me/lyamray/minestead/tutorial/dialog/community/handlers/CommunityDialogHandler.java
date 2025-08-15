@@ -23,7 +23,6 @@ public class CommunityDialogHandler {
                 .add(player.getLocation().getDirection().normalize().multiply(2));
 
         NpcLogicHandler.getInstance().handlePieter(location, player);
-
     }
 
     public void completed(Player player) {

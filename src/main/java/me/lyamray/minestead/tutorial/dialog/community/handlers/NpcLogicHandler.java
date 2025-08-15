@@ -17,23 +17,18 @@ public class NpcLogicHandler {
     }
 
     public void handleFleur(Location location, Player player) {
-        Npcs.createNpc("fleur" + player.getUniqueId(), player.getUniqueId(), location, NpcData.PIETER.getTexture(),
-                NpcData.PIETER.getDisplayName(), true);
     }
 
     public void handleHenk(Location location, Player player) {
-        Npcs.createNpc("henk" + player.getUniqueId(), player.getUniqueId(), location, NpcData.PIETER.getTexture(),
-                NpcData.PIETER.getDisplayName(), true);
+
     }
 
     public void handleHanna(Location location, Player player) {
-        Npcs.createNpc("hanna" + player.getUniqueId(), player.getUniqueId(), location, NpcData.PIETER.getTexture(),
-                NpcData.PIETER.getDisplayName(), true);
+
     }
 
     public void handleDaan(Location location, Player player) {
-        Npcs.createNpc("daan" + player.getUniqueId(), player.getUniqueId(), location, NpcData.PIETER.getTexture(),
-                NpcData.PIETER.getDisplayName(), true);
+
     }
 
     public void done() {
