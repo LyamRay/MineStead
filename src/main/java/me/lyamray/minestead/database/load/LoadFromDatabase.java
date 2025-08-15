@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import me.lyamray.minestead.MineStead;
 import me.lyamray.minestead.database.Database;
 import me.lyamray.minestead.animal.data.AnimalData;
 import me.lyamray.minestead.player.data.PlayerData;
@@ -25,17 +26,17 @@ public class LoadFromDatabase {
     private final Database database = Database.getInstance().getDatabase();
 
     public void loadPlayerDataAsync(UUID uuid, Consumer<PlayerData> callback) {
-        Async.runAsync(() -> {
+        Async.runAsync(MineStead.getInstance(), () -> {
             PlayerData data = loadPlayerData(uuid);
-            Async.runSync(() -> callback.accept(data));
+            Async.runSync(MineStead.getInstance(), () -> callback.accept(data));
         });
     }
 
     public void loadAnimalDataAsync(Runnable afterLoad) {
-        Async.runAsync(() -> {
+        Async.runAsync(MineStead.getInstance(), () -> {
             loadAnimalData();
             if (afterLoad != null) {
-                Async.runSync(afterLoad);
+                Async.runSync(MineStead.getInstance(), afterLoad);
             }
         });
     }

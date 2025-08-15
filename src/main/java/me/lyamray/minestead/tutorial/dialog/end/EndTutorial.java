@@ -23,9 +23,8 @@ public class EndTutorial {
         }
 
         int money = Money.getMoney(player);
-
+        StartTutorial.getInstance().getHasAcceptedTutorial().remove(player.getUniqueId());
         if (!playerData.isTutorialFinished()) {
-            StartTutorial.getInstance().getHasAcceptedTutorial().remove(player.getUniqueId());
             playerData.setTutorialFinished(true);
 
             if (money != 0) {

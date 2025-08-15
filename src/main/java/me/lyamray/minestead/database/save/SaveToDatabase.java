@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import me.lyamray.minestead.MineStead;
 import me.lyamray.minestead.database.Database;
 import me.lyamray.minestead.animal.data.AnimalData;
 import me.lyamray.minestead.player.data.PlayerData;
@@ -24,21 +25,28 @@ public class SaveToDatabase {
     private final Database database = Database.getInstance().getDatabase();
 
     public void savePlayerDataAsync(UUID uuid) {
-        Async.runAsync(() -> savePlayerData(uuid));
+        Async.runAsync(MineStead.getInstance(), () -> savePlayerData(uuid));
     }
 
     public void saveAnimalDataAsync(UUID uuid) {
-        Async.runAsync(() -> saveAnimalData(uuid));
+        Async.runAsync(MineStead.getInstance(), () -> saveAnimalData(uuid));
     }
 
     public void saveAllPlayerDataAsync() {
-        Async.runAsync(this::saveAllPlayerData);
+        Async.runAsync(MineStead.getInstance(), this::saveAllPlayerData);
     }
 
     public void saveAllAnimalDataAsync() {
-        Async.runAsync(this::saveAllAnimalData);
+        Async.runAsync(MineStead.getInstance(), this::saveAllAnimalData);
     }
 
+    public void saveAllPlayerDataSync() {
+        saveAllPlayerData();
+    }
+
+    public void saveAllAnimalDataSync() {
+        saveAllAnimalData();
+    }
     private void savePlayerData(UUID uuid) {
         PlayerData data = PlayerData.getInstance().getPlayerDataCache().get(uuid);
         if (data == null) {

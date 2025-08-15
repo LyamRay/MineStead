@@ -16,7 +16,7 @@ public class Money {
 
         if (data != null) {
             data.setMoney(data.getMoney() + amount);
-            MiniMessage.sendMessage("<gray> • </gray><gradient:#c89651:#8adb9a>Je hebt <b>" + amount + "</b> bits ontvangen!</gradient>", player);
+            MiniMessage.sendMessage("\n<gray> • </gray><gradient:#c89651:#8adb9a>Je hebt <b>" + amount + "</b> bits ontvangen!</gradient>\n", player);
         }
     }
 
@@ -26,7 +26,7 @@ public class Money {
 
         if (data != null && data.getMoney() >= amount) {
             data.setMoney(data.getMoney() - amount);
-            MiniMessage.sendMessage("<gray> • </gray><gradient:#c89651:#8adb9a>Je hebt <b>" + amount + "</b> bits uitgegeven!</gradient>\n", player);
+            MiniMessage.sendMessage("\n<gray> • </gray><gradient:#c89651:#8adb9a>Je hebt <b>" + amount + "</b> bits uitgegeven!</gradient>\n", player);
             return true;
         }
         return false;
@@ -52,7 +52,7 @@ public class Money {
 
         if (data != null) {
             data.setMoney(amount);
-            MiniMessage.sendMessage("<gray> • </gray><gradient:#c89651:#8adb9a>Je bits zijn naar <b>" + amount + "</b> gezet!</gradient>\n", player);
+            MiniMessage.sendMessage("\n<gray> • </gray><gradient:#c89651:#8adb9a>Je bits zijn naar <b>" + amount + "</b> gezet!</gradient>\n", player);
         }
     }
 }

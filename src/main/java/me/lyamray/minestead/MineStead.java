@@ -29,15 +29,15 @@ public final class MineStead extends JavaPlugin {
         registerListeners();
         registerCommands();
         Database.getInstance().setupDatabase();
-        LoadFromDatabase.getInstance().loadAnimalDataAsync(() -> {
+        LoadFromDatabase.getInstance().loadAnimalDataAsync(() -> { //Async
             log.info("Finished loading animals from database.");
         });
     }
 
     @Override
     public void onDisable() {
-        SaveToDatabase.getInstance().saveAllPlayerDataAsync();
-        SaveToDatabase.getInstance().saveAllAnimalDataAsync();
+        SaveToDatabase.getInstance().saveAllPlayerDataSync(); //Sync
+        SaveToDatabase.getInstance().saveAllAnimalDataSync(); //Sync
 
         FarmingDialogHandler.getInstance().cleanUpWater();
     }

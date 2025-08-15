@@ -1,20 +1,14 @@
 package me.lyamray.minestead.utils.async;
 
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.java.JavaPlugin;
 
 public class Async {
-    private static Plugin plugin;
-
-    public static void init(Plugin pl) {
-        plugin = pl;
-    }
-
-    public static void runAsync(Runnable task) {
+    public static void runAsync(JavaPlugin plugin, Runnable task) {
         Bukkit.getScheduler().runTaskAsynchronously(plugin, task);
     }
 
-    public static void runSync(Runnable task) {
+    public static void runSync(JavaPlugin plugin, Runnable task) {
         Bukkit.getScheduler().runTask(plugin, task);
     }
 }

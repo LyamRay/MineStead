@@ -55,8 +55,9 @@ public class StartTutorial {
     }
 
     private void handleSkipTutorial(Player player) {
-        EndTutorial.getInstance().tutorialEnded(player);
-        MiniMessage.sendMessage(Messages.TUTORIAL_SKIPPED.getMessage(player), player);
+        StartTutorial.getInstance().getHasAcceptedTutorial().remove(player.getUniqueId());
         player.closeDialog();
+        MiniMessage.sendMessage(Messages.TUTORIAL_SKIPPED.getMessage(player), player);
+        EndTutorial.getInstance().tutorialEnded(player);
     }
 }
