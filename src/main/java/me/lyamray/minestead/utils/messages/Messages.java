@@ -40,7 +40,7 @@ public enum Messages {
             " Elke plant heeft natuurlijk water nodig!</gradient>"),
     FARMING_TUTORIAL_MESSAGE_2(player -> "<gray> • </gray><gradient:#ff9500:#a6ff00>Je hebt een leeg water flesje gekregen." +
             " Vul deze op in het water!</gradient>"),
-    FARMING_TUTORIAL_MESSAGE_3(player -> "<gray> • </gray><gradient:#ff9500:#a6ff00>Heel goed! We gaan nu door naar het volgende hoofstuk.</gradient>");
+    FARMING_TUTORIAL_MESSAGE_3(player -> "<gray> • </gray><gradient:#ff9500:#a6ff00>Heel goed! We gaan nu door naar het volgende hoofdstuk.</gradient>");
 
 
 

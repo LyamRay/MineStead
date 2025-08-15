@@ -2,7 +2,7 @@ package me.lyamray.minestead.tutorial;
 
 import io.papermc.paper.dialog.Dialog;
 import lombok.Getter;
-import me.lyamray.minestead.tutorial.dialog.start.handlers.TutorialHandler;
+import me.lyamray.minestead.tutorial.dialog.end.EndTutorial;
 import me.lyamray.minestead.tutorial.dialog.template.DialogTemplate;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -11,7 +11,7 @@ import org.bukkit.event.Listener;
 public class GonnaBeDeletedLater implements Listener {
 
     @Getter
-    private static GonnaBeDeletedLater instace = new GonnaBeDeletedLater();
+    private static GonnaBeDeletedLater instancedaanplugge = new GonnaBeDeletedLater();
 
     private void startCommunityQuestTutorial(Player player) {
         Dialog communityDialog = DialogTemplate.getInstance().createDialogWithCallbacks(
@@ -24,7 +24,7 @@ public class GonnaBeDeletedLater implements Listener {
                 "<color:#d1c6ae>Ik weet dit al!</color>",
                 "<color:#9c978e>Klik hier om dit stukje van de tutorial over te slaan!</color>",
                 100,
-                (response, audience) -> TutorialHandler.getInstance().tutorialEnded(player)
+                (response, audience) -> EndTutorial.getInstance().tutorialEnded(player)
         );
         player.showDialog(communityDialog);
     }
@@ -36,11 +36,11 @@ public class GonnaBeDeletedLater implements Listener {
                 "<color:#c9ffe2>Toon me hoe!</color>",
                 "<color:#84968d>Klik hier om te leren hoe je dieren moet kopen, onderhouden, slachten of breeden!</color>",
                 100,
-                (response, audience) -> TutorialHandler.getInstance().tutorialEnded(player),
+                (response, audience) -> EndTutorial.getInstance().tutorialEnded(player),
                 "<color:#d1c6ae>Ik weet dit al!</color>",
                 "<color:#9c978e>Klik hier om dit stukje van de tutorial over te slaan en de tutorial te beëindigen!</color>",
                 100,
-                (response, audience) -> TutorialHandler.getInstance().tutorialEnded(player)
+                (response, audience) -> EndTutorial.getInstance().tutorialEnded(player)
         );
         player.showDialog(animalDialog);
     }

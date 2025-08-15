@@ -3,6 +3,7 @@ package me.lyamray.minestead.tutorial.dialog.start;
 import io.papermc.paper.dialog.Dialog;
 import lombok.Getter;
 import lombok.Setter;
+import me.lyamray.minestead.tutorial.dialog.end.EndTutorial;
 import me.lyamray.minestead.tutorial.dialog.farming.StartFarmingDialog;
 import me.lyamray.minestead.tutorial.dialog.start.handlers.TutorialHandler;
 import me.lyamray.minestead.tutorial.dialog.template.DialogTemplate;
@@ -54,7 +55,7 @@ public class StartTutorial {
     }
 
     private void handleSkipTutorial(Player player) {
-        TutorialHandler.getInstance().tutorialEnded(player);
+        EndTutorial.getInstance().tutorialEnded(player);
         MiniMessage.sendMessage(Messages.TUTORIAL_SKIPPED.getMessage(player), player);
         player.closeDialog();
     }
