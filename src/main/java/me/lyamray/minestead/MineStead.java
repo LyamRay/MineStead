@@ -1,6 +1,7 @@
 package me.lyamray.minestead;
 
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import me.lyamray.minestead.commands.ResetTutorialCMD;
 import me.lyamray.minestead.database.Database;
 import me.lyamray.minestead.database.load.LoadFromDatabase;
@@ -16,7 +17,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
 import java.util.Arrays;
-
+@Slf4j
 public final class MineStead extends JavaPlugin {
 
     @Getter
@@ -28,20 +29,16 @@ public final class MineStead extends JavaPlugin {
         registerListeners();
         registerCommands();
         Database.getInstance().setupDatabase();
-        LoadFromDatabase.getInstance().loadAnimalData();
-
-        try {
-            LicenseChecker.getInstance().checkLicense();
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
+        LoadFromDatabase.getInstance().loadAnimalDataAsync(() -> {
+            log.info("Finished loading animals from database.");
+        });
     }
 
     @Override
     public void onDisable() {
-        SaveToDatabase.getInstance().saveAllPlayerData();
-        SaveToDatabase.getInstance().saveAllAnimalData();
+        SaveToDatabase.getInstance().saveAllPlayerDataAsync();
+        SaveToDatabase.getInstance().saveAllAnimalDataAsync();
+
         FarmingDialogHandler.getInstance().cleanUpWater();
     }
 

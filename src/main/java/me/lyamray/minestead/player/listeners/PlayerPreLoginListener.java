@@ -20,11 +20,11 @@ public class PlayerPreLoginListener implements Listener {
     public void playerLoginEvent(AsyncPlayerPreLoginEvent event) {
         UUID uuid = event.getUniqueId();
 
-        PlayerData playerData = LoadFromDatabase.getInstance().loadPlayerData(uuid);
-        if (playerData == null) return;
-
-        UUID dataUuid = playerData.getUuid();
-
-        PlayerData.getInstance().getPlayerDataCache().putIfAbsent(dataUuid, playerData);
+        LoadFromDatabase.getInstance().loadPlayerDataAsync(uuid, playerData -> {
+            if (playerData != null) {
+                UUID dataUuid = playerData.getUuid();
+                PlayerData.getInstance().getPlayerDataCache().putIfAbsent(dataUuid, playerData);
+            }
+        });
     }
 }

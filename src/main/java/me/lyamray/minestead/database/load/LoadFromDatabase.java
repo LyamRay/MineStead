@@ -7,11 +7,13 @@ import lombok.extern.slf4j.Slf4j;
 import me.lyamray.minestead.database.Database;
 import me.lyamray.minestead.animal.data.AnimalData;
 import me.lyamray.minestead.player.data.PlayerData;
+import me.lyamray.minestead.utils.async.Async;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.function.Consumer;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -22,7 +24,23 @@ public class LoadFromDatabase {
 
     private final Database database = Database.getInstance().getDatabase();
 
-    public PlayerData loadPlayerData(UUID uuid) {
+    public void loadPlayerDataAsync(UUID uuid, Consumer<PlayerData> callback) {
+        Async.runAsync(() -> {
+            PlayerData data = loadPlayerData(uuid);
+            Async.runSync(() -> callback.accept(data));
+        });
+    }
+
+    public void loadAnimalDataAsync(Runnable afterLoad) {
+        Async.runAsync(() -> {
+            loadAnimalData();
+            if (afterLoad != null) {
+                Async.runSync(afterLoad);
+            }
+        });
+    }
+
+    private PlayerData loadPlayerData(UUID uuid) {
         try {
             List<Map<String, Object>> result = database.get("players", "uuid = ?", uuid.toString());
 
@@ -42,7 +60,7 @@ public class LoadFromDatabase {
         }
     }
 
-    public void loadAnimalData() {
+    private void loadAnimalData() {
         try {
             List<Map<String, Object>> results = database.get("animals", null);
 

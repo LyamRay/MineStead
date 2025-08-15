@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import me.lyamray.minestead.database.Database;
 import me.lyamray.minestead.animal.data.AnimalData;
 import me.lyamray.minestead.player.data.PlayerData;
+import me.lyamray.minestead.utils.async.Async;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -22,7 +23,23 @@ public class SaveToDatabase {
 
     private final Database database = Database.getInstance().getDatabase();
 
-    public void savePlayerData(UUID uuid) {
+    public void savePlayerDataAsync(UUID uuid) {
+        Async.runAsync(() -> savePlayerData(uuid));
+    }
+
+    public void saveAnimalDataAsync(UUID uuid) {
+        Async.runAsync(() -> saveAnimalData(uuid));
+    }
+
+    public void saveAllPlayerDataAsync() {
+        Async.runAsync(this::saveAllPlayerData);
+    }
+
+    public void saveAllAnimalDataAsync() {
+        Async.runAsync(this::saveAllAnimalData);
+    }
+
+    private void savePlayerData(UUID uuid) {
         PlayerData data = PlayerData.getInstance().getPlayerDataCache().get(uuid);
         if (data == null) {
             log.warn("Tried to save player data for {}, but no data found in cache.", uuid);
@@ -38,7 +55,7 @@ public class SaveToDatabase {
         saveOrUpdate("players", uuid.toString(), values);
     }
 
-    public void saveAnimalData(UUID uuid) {
+    private void saveAnimalData(UUID uuid) {
         AnimalData data = AnimalData.getInstance().getAnimalDataCache().get(uuid);
         if (data == null) {
             log.warn("Tried to save animal data for {}, but no data found in cache.", uuid);
@@ -67,13 +84,13 @@ public class SaveToDatabase {
         }
     }
 
-    public void saveAllPlayerData() {
+    private void saveAllPlayerData() {
         PlayerData.getInstance().getPlayerDataCache().values().forEach(data -> {
             savePlayerData(data.getUuid());
         });
     }
 
-    public void saveAllAnimalData() {
+    private void saveAllAnimalData() {
         AnimalData.getInstance().getAnimalDataCache().values().forEach(data -> {
             saveAnimalData(data.getUuid());
         });

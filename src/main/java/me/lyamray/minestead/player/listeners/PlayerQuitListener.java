@@ -14,15 +14,16 @@ import java.util.UUID;
 public class PlayerQuitListener implements Listener {
 
     @EventHandler
-    public void playerLeave(PlayerQuitEvent event) {
+    public void onPlayerQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
         UUID uuid = player.getUniqueId();
 
+        SaveToDatabase.getInstance().savePlayerDataAsync(uuid);
+
         try {
-            SaveToDatabase.getInstance().savePlayerData(uuid);
+            FarmingDialogHandler.getInstance().cleanUpWater(uuid);
         } catch (Exception e) {
-            log.warn("There was an error trying to save the UUID {} to the database!", uuid, e);
+            log.warn("Error cleaning up water for UUID {}: {}", uuid, e.getMessage(), e);
         }
-        FarmingDialogHandler.getInstance().cleanUpWater(uuid);
     }
 }
