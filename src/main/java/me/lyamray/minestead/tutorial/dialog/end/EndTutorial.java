@@ -2,6 +2,7 @@ package me.lyamray.minestead.tutorial.dialog.end;
 
 import lombok.Getter;
 import me.lyamray.minestead.player.data.PlayerData;
+import me.lyamray.minestead.player.data.PlayerDataHandler;
 import me.lyamray.minestead.tutorial.dialog.shared.messages.SharedTutorialMessages;
 import me.lyamray.minestead.tutorial.dialog.start.StartTutorial;
 import me.lyamray.minestead.tutorial.dialog.start.handlers.TutorialHandler;
@@ -16,7 +17,8 @@ public class EndTutorial {
     private static EndTutorial instance = new EndTutorial();
 
     public void tutorialEnded(Player player) {
-        PlayerData playerData = PlayerData.getInstance().getPlayerDataCache().get(player.getUniqueId());
+        PlayerData playerData = PlayerDataHandler.getInstance().getData(player.getUniqueId());
+
 
         if (playerData == null) {
             MiniMessage.sendMessage(SharedTutorialMessages.TUTORIAL_USER_DOES_NOT_EXIST.getMessage(player), player);

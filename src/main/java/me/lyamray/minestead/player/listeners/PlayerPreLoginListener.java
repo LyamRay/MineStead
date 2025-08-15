@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import me.lyamray.minestead.database.load.LoadFromDatabase;
 import me.lyamray.minestead.player.data.PlayerData;
+import me.lyamray.minestead.player.data.PlayerDataHandler;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
@@ -23,7 +24,7 @@ public class PlayerPreLoginListener implements Listener {
         LoadFromDatabase.getInstance().loadPlayerDataAsync(uuid, playerData -> {
             if (playerData != null) {
                 UUID dataUuid = playerData.getUuid();
-                PlayerData.getInstance().getPlayerDataCache().putIfAbsent(dataUuid, playerData);
+                PlayerDataHandler.getInstance().addData(playerData);
             }
         });
     }

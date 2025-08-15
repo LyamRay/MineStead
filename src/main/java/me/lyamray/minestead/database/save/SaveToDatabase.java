@@ -8,6 +8,7 @@ import me.lyamray.minestead.MineStead;
 import me.lyamray.minestead.database.Database;
 import me.lyamray.minestead.animal.data.AnimalData;
 import me.lyamray.minestead.player.data.PlayerData;
+import me.lyamray.minestead.player.data.PlayerDataHandler;
 import me.lyamray.minestead.utils.async.Async;
 
 import java.sql.SQLException;
@@ -48,7 +49,7 @@ public class SaveToDatabase {
         saveAllAnimalData();
     }
     private void savePlayerData(UUID uuid) {
-        PlayerData data = PlayerData.getInstance().getPlayerDataCache().get(uuid);
+        PlayerData data = PlayerDataHandler.getInstance().getData(uuid);
         if (data == null) {
             log.warn("Tried to save player data for {}, but no data found in cache.", uuid);
             return;
@@ -93,7 +94,7 @@ public class SaveToDatabase {
     }
 
     private void saveAllPlayerData() {
-        PlayerData.getInstance().getPlayerDataCache().values().forEach(data -> {
+        PlayerDataHandler.getInstance().getPlayerDataCache().values().forEach(data -> {
             savePlayerData(data.getUuid());
         });
     }

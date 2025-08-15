@@ -1,5 +1,6 @@
 package me.lyamray.minestead.commands;
 
+import me.lyamray.minestead.player.data.PlayerDataHandler;
 import me.lyamray.minestead.player.data.PlayerData;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -23,7 +24,7 @@ public class ResetTutorialCMD implements CommandExecutor {
         Player player = (Player) sender;
         UUID uuid = player.getUniqueId();
 
-        PlayerData playerData = PlayerData.getInstance().getPlayerDataCache().get(uuid);
+        PlayerData playerData = PlayerDataHandler.getInstance().getData(uuid);
 
         if (playerData == null) {
             sender.sendMessage("§cNo player data found for you.");

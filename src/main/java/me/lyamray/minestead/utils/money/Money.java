@@ -2,6 +2,7 @@ package me.lyamray.minestead.utils.money;
 
 import lombok.experimental.UtilityClass;
 import me.lyamray.minestead.player.data.PlayerData;
+import me.lyamray.minestead.player.data.PlayerDataHandler;
 import me.lyamray.minestead.utils.messages.MiniMessage;
 import org.bukkit.entity.Player;
 
@@ -12,7 +13,7 @@ public class Money {
 
     public void addMoney(Player player, int amount) {
         UUID uuid = player.getUniqueId();
-        PlayerData data = PlayerData.getInstance().getPlayerDataCache().get(uuid);
+        PlayerData data = PlayerDataHandler.getInstance().getData(uuid);
 
         if (data != null) {
             data.setMoney(data.getMoney() + amount);
@@ -22,7 +23,7 @@ public class Money {
 
     public boolean removeMoney(Player player, int amount) {
         UUID uuid = player.getUniqueId();
-        PlayerData data = PlayerData.getInstance().getPlayerDataCache().get(uuid);
+        PlayerData data = PlayerDataHandler.getInstance().getData(uuid);
 
         if (data != null && data.getMoney() >= amount) {
             data.setMoney(data.getMoney() - amount);
@@ -33,26 +34,19 @@ public class Money {
     }
 
     public int getMoney(Player player) {
-        UUID uuid = player.getUniqueId();
-        PlayerData data = PlayerData.getInstance().getPlayerDataCache().get(uuid);
-
-        return (data != null) ? data.getMoney() : 0;
+        PlayerData data = PlayerDataHandler.getInstance().getData(player.getUniqueId());
+        return data.getMoney();
     }
 
     public boolean hasMoney(Player player, int amount) {
-        UUID uuid = player.getUniqueId();
-        PlayerData data = PlayerData.getInstance().getPlayerDataCache().get(uuid);
-
-        return data != null && data.getMoney() >= amount;
+        PlayerData data = PlayerDataHandler.getInstance().getData(player.getUniqueId());
+        return data.getMoney() >= amount;
     }
 
     public void setMoney(Player player, int amount) {
-        UUID uuid = player.getUniqueId();
-        PlayerData data = PlayerData.getInstance().getPlayerDataCache().get(uuid);
+        PlayerData data = PlayerDataHandler.getInstance().getData(player.getUniqueId());
+        data.setMoney(amount);
 
-        if (data != null) {
-            data.setMoney(amount);
-            MiniMessage.sendMessage("\n<gray> • </gray><gradient:#c89651:#8adb9a>Je bits zijn naar <b>" + amount + "</b> gezet!</gradient>\n", player);
-        }
+        MiniMessage.sendMessage("\n<gray> • </gray><gradient:#c89651:#8adb9a>Je bits zijn naar <b>" + amount + "</b> gezet!</gradient>\n", player);
     }
 }
