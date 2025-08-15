@@ -1,10 +1,11 @@
 package me.lyamray.minestead.animal.data;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Data
 @AllArgsConstructor
@@ -13,8 +14,6 @@ public class AnimalData {
 
     @Getter
     private static final AnimalData instance = new AnimalData();
-
-    private final Map<UUID, AnimalData> AnimalDataCache = new ConcurrentHashMap<>();
 
     private UUID uuid;
     private UUID ownerUuid;

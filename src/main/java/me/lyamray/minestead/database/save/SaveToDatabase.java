@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.lyamray.minestead.MineStead;
+import me.lyamray.minestead.animal.data.AnimalDataHandler;
 import me.lyamray.minestead.database.Database;
 import me.lyamray.minestead.animal.data.AnimalData;
 import me.lyamray.minestead.player.data.PlayerData;
@@ -65,7 +66,7 @@ public class SaveToDatabase {
     }
 
     private void saveAnimalData(UUID uuid) {
-        AnimalData data = AnimalData.getInstance().getAnimalDataCache().get(uuid);
+        AnimalData data = AnimalDataHandler.getInstance().getData(uuid);
         if (data == null) {
             log.warn("Tried to save animal data for {}, but no data found in cache.", uuid);
             return;
@@ -100,7 +101,7 @@ public class SaveToDatabase {
     }
 
     private void saveAllAnimalData() {
-        AnimalData.getInstance().getAnimalDataCache().values().forEach(data -> {
+        AnimalDataHandler.getInstance().getAnimalDataCache().values().forEach(data -> {
             saveAnimalData(data.getUuid());
         });
     }
