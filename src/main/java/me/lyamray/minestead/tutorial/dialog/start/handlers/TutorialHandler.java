@@ -1,6 +1,7 @@
 package me.lyamray.minestead.tutorial.dialog.start.handlers;
 
 import lombok.Getter;
+import me.lyamray.minestead.utils.messages.MiniMessage;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -22,6 +23,7 @@ public class TutorialHandler {
         float pitch = 0f;
 
         Location location = new Location(player.getWorld(), x, y, z, yaw, pitch).toCenterLocation();
+        MiniMessage.clearChat(player);
         player.teleport(location);
         player.setGravity(false);
     }

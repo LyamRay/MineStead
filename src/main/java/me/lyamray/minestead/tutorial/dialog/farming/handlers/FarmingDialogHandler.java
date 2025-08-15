@@ -50,6 +50,7 @@ public class FarmingDialogHandler {
         }, 20L);
         TimerUtil.runTaskLater(() -> {
             player.getInventory().clear();
+            MiniMessage.clearChat(player);
         }, 60L);
     }
 
