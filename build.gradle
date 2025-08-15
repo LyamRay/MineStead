@@ -54,4 +54,9 @@ processResources {
     filesMatching('plugin.yml') {
         expand props
     }
+
+    tasks.named('jar') {
+        destinationDirectory = file("C:/Users/lyamr/Desktop/Server/plugins")
+        archiveFileName = "${project.name}-${project.version}.jar"
+    }
 }
