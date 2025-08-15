@@ -29,8 +29,8 @@ public final class MineStead extends JavaPlugin {
         registerListeners();
         registerCommands();
         Database.getInstance().setupDatabase();
-        LoadFromDatabase.getInstance().loadAnimalDataAsync(() -> { //Async
-            log.info("Finished loading animals from database.");
+        LoadFromDatabase.getInstance().loadAnimalDataAsync(() -> {
+            log.info("Alle animal-data is succesvol ingeladen!");
         });
     }
 
