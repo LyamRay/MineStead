@@ -2,8 +2,9 @@ package me.lyamray.minestead.tutorial.dialog.farming.handlers;
 
 import lombok.Getter;
 import lombok.Setter;
+import me.lyamray.minestead.tutorial.dialog.community.StartCommunityDialog;
+import me.lyamray.minestead.tutorial.dialog.farming.messages.FarmingTutorialMessages;
 import me.lyamray.minestead.utils.items.ItemStacks;
-import me.lyamray.minestead.utils.messages.Messages;
 import me.lyamray.minestead.utils.messages.MiniMessage;
 import me.lyamray.minestead.utils.timers.TimerUtil;
 import org.bukkit.Location;
@@ -34,23 +35,24 @@ public class FarmingDialogHandler {
         targetBlock.setType(Material.WATER);
 
         TimerUtil.runTaskLater(() -> {
-            MiniMessage.sendMessage(Messages.FARMING_TUTORIAL_MESSAGE_1.getMessage(player), player);
+            MiniMessage.sendMessage(FarmingTutorialMessages.FARMING_TUTORIAL_MESSAGE_1.getMessage(player), player);
         }, 20L);
 
         TimerUtil.runTaskLater(() -> {
             player.getInventory().setItem(4, ItemStacks.leegWaterFlesje(1));
             player.getInventory().setHeldItemSlot(4);
-            MiniMessage.sendMessage(Messages.FARMING_TUTORIAL_MESSAGE_2.getMessage(player), player);
+            MiniMessage.sendMessage(FarmingTutorialMessages.FARMING_TUTORIAL_MESSAGE_2.getMessage(player), player);
         }, 40L);
     }
 
     public void completed(Player player) {
         TimerUtil.runTaskLater(() -> {
-            MiniMessage.sendMessage(Messages.FARMING_TUTORIAL_MESSAGE_3.getMessage(player), player);
+            MiniMessage.sendMessage(FarmingTutorialMessages.FARMING_TUTORIAL_MESSAGE_3.getMessage(player), player);
         }, 20L);
         TimerUtil.runTaskLater(() -> {
             player.getInventory().clear();
             MiniMessage.clearChat(player);
+            StartCommunityDialog.getInstance().startCommunityQuestTutorial(player);
         }, 60L);
     }
 

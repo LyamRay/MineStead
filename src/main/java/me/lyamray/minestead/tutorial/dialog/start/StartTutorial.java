@@ -5,8 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 import me.lyamray.minestead.tutorial.dialog.end.EndTutorial;
 import me.lyamray.minestead.tutorial.dialog.farming.StartFarmingDialog;
+import me.lyamray.minestead.tutorial.dialog.shared.messages.SharedTutorialMessages;
 import me.lyamray.minestead.tutorial.dialog.start.handlers.TutorialHandler;
-import me.lyamray.minestead.tutorial.dialog.template.DialogTemplate;
+import me.lyamray.minestead.tutorial.dialog.shared.template.DialogTemplate;
 import me.lyamray.minestead.utils.messages.Messages;
 import me.lyamray.minestead.utils.messages.MiniMessage;
 import org.bukkit.entity.Player;
@@ -57,7 +58,7 @@ public class StartTutorial {
     private void handleSkipTutorial(Player player) {
         StartTutorial.getInstance().getHasAcceptedTutorial().remove(player.getUniqueId());
         player.closeDialog();
-        MiniMessage.sendMessage(Messages.TUTORIAL_SKIPPED.getMessage(player), player);
+        MiniMessage.sendMessage(SharedTutorialMessages.TUTORIAL_SKIPPED.getMessage(player), player);
         EndTutorial.getInstance().tutorialEnded(player);
     }
 }

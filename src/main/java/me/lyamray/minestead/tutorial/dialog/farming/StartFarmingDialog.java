@@ -2,9 +2,9 @@ package me.lyamray.minestead.tutorial.dialog.farming;
 
 import io.papermc.paper.dialog.Dialog;
 import lombok.Getter;
-import me.lyamray.minestead.tutorial.dialog.end.EndTutorial;
+import me.lyamray.minestead.tutorial.dialog.community.StartCommunityDialog;
 import me.lyamray.minestead.tutorial.dialog.farming.handlers.FarmingDialogHandler;
-import me.lyamray.minestead.tutorial.dialog.template.DialogTemplate;
+import me.lyamray.minestead.tutorial.dialog.shared.template.DialogTemplate;
 import org.bukkit.entity.Player;
 
 public class StartFarmingDialog {
@@ -23,7 +23,7 @@ public class StartFarmingDialog {
                 "<color:#d1c6ae>Ik weet dit al!</color>",
                 "<color:#9c978e>Klik hier om dit stukje van de tutorial over te slaan!</color>",
                 100,
-                (response, audience) -> EndTutorial.getInstance().tutorialEnded(player)
+                (response, audience) -> StartCommunityDialog.getInstance().startCommunityQuestTutorial(player)
         );
         player.showDialog(farmingDialog);
     }

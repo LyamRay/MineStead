@@ -1,4 +1,4 @@
-package me.lyamray.minestead.tutorial.dialog.template;
+package me.lyamray.minestead.tutorial.dialog.shared.template;
 
 import io.papermc.paper.dialog.Dialog;
 import io.papermc.paper.dialog.DialogResponseView;

@@ -15,7 +15,7 @@ public class MiniMessage {
     }
 
     public void sendMessage(String input, Player player) {
-         player.sendMessage(miniMessage.deserialize(input));
+         player.sendRichMessage(input);
     }
 
     public String serializeComponent(Component component) {

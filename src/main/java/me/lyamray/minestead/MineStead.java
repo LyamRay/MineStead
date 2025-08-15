@@ -8,6 +8,8 @@ import me.lyamray.minestead.database.load.LoadFromDatabase;
 import me.lyamray.minestead.database.save.SaveToDatabase;
 import me.lyamray.minestead.license.LicenseChecker;
 import me.lyamray.minestead.player.listeners.*;
+import me.lyamray.minestead.tutorial.dialog.community.handlers.CommunityDialogHandler;
+import me.lyamray.minestead.tutorial.dialog.community.listeners.PlayerInteractAtEntityListener;
 import me.lyamray.minestead.tutorial.dialog.farming.listeners.BlockPhysicsListener;
 import me.lyamray.minestead.player.listeners.PlayerMoveListener;
 import me.lyamray.minestead.tutorial.dialog.farming.listeners.PlayerInteractListener;
@@ -39,6 +41,7 @@ public final class MineStead extends JavaPlugin {
         SaveToDatabase.getInstance().saveAllPlayerDataSync(); //Sync
         SaveToDatabase.getInstance().saveAllAnimalDataSync(); //Sync
 
+        CommunityDialogHandler.getInstance().cleanUpAllNpcs();
         FarmingDialogHandler.getInstance().cleanUpWater();
     }
 
@@ -52,7 +55,8 @@ public final class MineStead extends JavaPlugin {
                 new PlayerDropItemListener(),
                 new PlayerItemSwapListener(),
                 new BlockPhysicsListener(),
-                new PlayerInteractListener()
+                new PlayerInteractListener(),
+                new PlayerInteractAtEntityListener()
         ).forEach(listener -> Bukkit.getPluginManager().registerEvents(listener, this));
     }
 

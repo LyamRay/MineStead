@@ -2,6 +2,7 @@ package me.lyamray.minestead.tutorial.dialog.end;
 
 import lombok.Getter;
 import me.lyamray.minestead.player.data.PlayerData;
+import me.lyamray.minestead.tutorial.dialog.shared.messages.SharedTutorialMessages;
 import me.lyamray.minestead.tutorial.dialog.start.StartTutorial;
 import me.lyamray.minestead.tutorial.dialog.start.handlers.TutorialHandler;
 import me.lyamray.minestead.utils.messages.Messages;
@@ -18,7 +19,7 @@ public class EndTutorial {
         PlayerData playerData = PlayerData.getInstance().getPlayerDataCache().get(player.getUniqueId());
 
         if (playerData == null) {
-            MiniMessage.sendMessage(Messages.TUTORIAL_USER_DOES_NOT_EXIST.getMessage(player), player);
+            MiniMessage.sendMessage(SharedTutorialMessages.TUTORIAL_USER_DOES_NOT_EXIST.getMessage(player), player);
             return;
         }
 
@@ -33,7 +34,7 @@ public class EndTutorial {
                 return;
             }
 
-            MiniMessage.sendMessage(Messages.TUTORIAL_COMPLETED.getMessage(player), player);
+            MiniMessage.sendMessage(SharedTutorialMessages.TUTORIAL_COMPLETED.getMessage(player), player);
             StartTutorial.getInstance().getHasAcceptedTutorial().remove(player.getUniqueId());
             TutorialHandler.getInstance().stopHandlingDialog(player);
             Money.addMoney(player, 500);

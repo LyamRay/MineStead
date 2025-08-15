@@ -3,13 +3,15 @@ package me.lyamray.minestead.utils.npc;
 import de.oliver.fancynpcs.api.FancyNpcsPlugin;
 import de.oliver.fancynpcs.api.Npc;
 import de.oliver.fancynpcs.api.NpcData;
+import lombok.experimental.UtilityClass;
 import org.bukkit.Location;
 
 import java.util.UUID;
 
+@UtilityClass
 public class Npcs {
 
-    public Npc createNpc(String name, UUID creatorId, Location location, String skin, String displayName, boolean saveToFile) {
+    public void createNpc(String name, UUID creatorId, Location location, String skin, String displayName, boolean saveToFile) {
         NpcData data = new NpcData(name, creatorId, location);
         data.setSkin(skin);
         data.setDisplayName(displayName);
@@ -22,7 +24,6 @@ public class Npcs {
         npc.create();
         npc.spawnForAll();
 
-        return npc;
     }
 
     public void updateNpc(Npc npc, String skin, String displayName) {
