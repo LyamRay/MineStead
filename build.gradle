@@ -9,8 +9,11 @@ version = '1.0'
 repositories {
     mavenCentral()
     maven {
+        url "https://repo.fancyinnovations.com/releases"
+    }
+    maven {
         name = "papermc-repo"
-        url = "https://repo.papermc.io/repository/maven-public/"
+        url = uri("https://repo.papermc.io/repository/maven-public/")
     }
 }
 
@@ -18,6 +21,7 @@ dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.8-R0.1-SNAPSHOT")
     compileOnly 'org.projectlombok:lombok:1.18.30'
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
+    compileOnly("de.oliver:FancyNpcs:2.7.0")
 }
 
 tasks {
