@@ -22,7 +22,7 @@ public class NpcLogicHandler {
     }
 
     public void handleFleurNpc(Location location, Player player) {
-        MiniMessage.clearChat(player); // clear chat only for Fleur, if needed
+        MiniMessage.clearChat(player);
         handleNpc(location, player, "fleur", NpcData.FLEUR,
                 CommunityTutorialMessages.COMMUNITY_TUTORIAL_FLEUR_MESSAGE_1.getMessage(player),
                 CommunityTutorialMessages.COMMUNITY_TUTORIAL_FLEUR_MESSAGE_2.getMessage(player));
