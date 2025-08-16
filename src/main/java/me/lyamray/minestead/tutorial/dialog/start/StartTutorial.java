@@ -6,9 +6,8 @@ import lombok.Setter;
 import me.lyamray.minestead.tutorial.dialog.end.EndTutorial;
 import me.lyamray.minestead.tutorial.dialog.farming.StartFarmingDialog;
 import me.lyamray.minestead.tutorial.dialog.shared.messages.SharedTutorialMessages;
-import me.lyamray.minestead.tutorial.dialog.start.handlers.TutorialHandler;
+import me.lyamray.minestead.tutorial.dialog.shared.handlers.TutorialHandler;
 import me.lyamray.minestead.tutorial.dialog.shared.template.DialogTemplate;
-import me.lyamray.minestead.utils.messages.Messages;
 import me.lyamray.minestead.utils.messages.MiniMessage;
 import org.bukkit.entity.Player;
 

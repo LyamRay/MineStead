@@ -43,7 +43,6 @@ public class CommunityDialogHandler {
     }
 
     public void cleanUpNpc(Player player)  {
-        //Npc npc = Npcs.getNpc("" + player.getUniqueId());
         Npcs.removeNpc(playerNpcs.get(player.getUniqueId()));
         playerNpcs.remove(player.getUniqueId());
     }

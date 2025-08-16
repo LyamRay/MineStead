@@ -1,4 +1,4 @@
-package me.lyamray.minestead.tutorial.dialog.start.handlers;
+package me.lyamray.minestead.tutorial.dialog.shared.handlers;
 
 import lombok.Getter;
 import me.lyamray.minestead.utils.messages.MiniMessage;
@@ -29,7 +29,7 @@ public class TutorialHandler {
     }
 
     public void stopHandlingDialog(Player player) {
-        Location location = new Location(player.getWorld(), 0, -60, 0).toCenterLocation();
+        Location location = new Location(player.getWorld(), 0, -60, 0, 180,0).toCenterLocation();
         player.teleport(location);
         player.setGravity(true);
     }

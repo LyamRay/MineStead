@@ -47,7 +47,7 @@ public enum CommunityTutorialMessages {
 
     COMMUNITY_TUTORIAL_HENK_MESSAGE_2(player -> """
             
-            <gray> • </gray><gradient:#ff9500:#a6ff00>Begin met Henk te praten door met haar te interacten!</gradient>
+            <gray> • </gray><gradient:#ff9500:#a6ff00>Begin met Henk te praten door met hem te interacten!</gradient>
             """),
 
     COMMUNITY_TUTORIAL_HENK_MESSAGE_3(player -> "\n<gray> • </gray><gradient:#ff9500:#a6ff00>Heel goed! Ontdek nu wie de volgende buur is.</gradient>\n"),
@@ -57,7 +57,7 @@ public enum CommunityTutorialMessages {
     COMMUNITY_TUTORIAL_HANNA_MESSAGE_1(player -> """
             
             <gray> • </gray><gradient:#ff9500:#a6ff00>Maak kennis met Buur Hanna!\
-             Je zal Buur Hanna kunnen aanspreken als jij bepaalde klusjes wilt doen. Deze zullen goed beloond worden!</gradient>
+             Je zult Buur Hanna kunnen aanspreken als jij bepaalde klusjes wilt doen. Deze zullen goed beloond worden!</gradient>
             """),
 
     COMMUNITY_TUTORIAL_HANNA_MESSAGE_2(player -> """
@@ -77,7 +77,7 @@ public enum CommunityTutorialMessages {
 
     COMMUNITY_TUTORIAL_DAAN_MESSAGE_2(player -> """
             
-            <gray> • </gray><gradient:#ff9500:#a6ff00>Begin met Buur Daan te praten door met haar te interacten!</gradient>
+            <gray> • </gray><gradient:#ff9500:#a6ff00>Begin met Buur Daan te praten door met hem te interacten!</gradient>
             """),
 
     COMMUNITY_TUTORIAL_DAAN_MESSAGE_3(player -> """
