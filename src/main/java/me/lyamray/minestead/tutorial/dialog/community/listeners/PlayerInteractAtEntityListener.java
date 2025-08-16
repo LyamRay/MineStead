@@ -18,7 +18,9 @@ public class PlayerInteractAtEntityListener implements Listener {
     public void onNpcInteract(NpcInteractEvent event) {
         Npc npc = event.getNpc();
         Player player = event.getPlayer();
-        Location location = npc.getData().getLocation().toCenterLocation();
+        Location location = player.getLocation()
+                .add(player.getLocation().getDirection().normalize().multiply(2));
+        location.add(0, 0.3,0).toCenterLocation();
 
         String npcName = npc.getData().getName();
         String baseName = npcName.replaceFirst(player.getUniqueId().toString(), "");
