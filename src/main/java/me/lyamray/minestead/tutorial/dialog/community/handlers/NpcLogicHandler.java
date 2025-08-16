@@ -50,7 +50,6 @@ public class NpcLogicHandler {
     }
 
     public void done(Player player) {
-        MiniMessage.sendMessage(CommunityTutorialMessages.COMMUNITY_TUTORIAL_DAAN_MESSAGE_3.getMessage(player), player);
     }
 
     private void handleNpc(Location location, Player player, String npcBaseName, NpcData npcData,
