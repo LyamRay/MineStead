@@ -11,7 +11,7 @@ public enum Messages {
     PLAYER_FIRST_TIME_JOIN_MESSAGE(player -> ("""
             
             <gray> • </gray><gradient:#ff9500:#a6ff00>Hey, {playername}!\
-             Fijn dat je voor de eerste keer joined! Volg de tutorial om je eigen Home-Stead te creëren. Veel plezier!</gradient>
+             Fijn dat je voor de eerste keer joined! Veel plezier!</gradient>
             """)
             .replace("{playername}", player.getName())),
 

@@ -34,9 +34,8 @@ public class FarmingDialogHandler {
 
         targetBlock.setType(Material.WATER);
 
-        TimerUtil.runTaskLater(() -> {
-            MiniMessage.sendMessage(FarmingTutorialMessages.FARMING_TUTORIAL_MESSAGE_1.getMessage(player), player);
-        }, 20L);
+        TimerUtil.runTaskLater(() -> MiniMessage
+                .sendMessage(FarmingTutorialMessages.FARMING_TUTORIAL_MESSAGE_1.getMessage(player), player), 20L);
 
         TimerUtil.runTaskLater(() -> {
             player.getInventory().setItem(4, ItemStacks.leegWaterFlesje(1));
@@ -46,13 +45,13 @@ public class FarmingDialogHandler {
     }
 
     public void completed(Player player) {
-        TimerUtil.runTaskLater(() -> {
-            MiniMessage.sendMessage(FarmingTutorialMessages.FARMING_TUTORIAL_MESSAGE_3.getMessage(player), player);
-        }, 20L);
+        TimerUtil.runTaskLater(() -> MiniMessage
+                .sendMessage(FarmingTutorialMessages.FARMING_TUTORIAL_MESSAGE_3.getMessage(player), player), 20L);
+
         TimerUtil.runTaskLater(() -> {
             player.getInventory().clear();
-            MiniMessage.clearChat(player);
             StartCommunityDialog.getInstance().startCommunityQuestTutorial(player);
+            cleanUpWater(player.getUniqueId());
         }, 60L);
     }
 

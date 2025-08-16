@@ -3,6 +3,7 @@ package me.lyamray.minestead.tutorial.dialog.community.handlers;
 import de.oliver.fancynpcs.api.FancyNpcsPlugin;
 import de.oliver.fancynpcs.api.Npc;
 import lombok.Getter;
+import lombok.Setter;
 import me.lyamray.minestead.utils.messages.MiniMessage;
 import me.lyamray.minestead.utils.timers.TimerUtil;
 import org.bukkit.Location;
@@ -11,6 +12,8 @@ import org.bukkit.entity.Player;
 import java.util.HashMap;
 import java.util.UUID;
 
+@Getter
+@Setter
 public class CommunityDialogHandler {
 
     @Getter
@@ -21,8 +24,9 @@ public class CommunityDialogHandler {
     public void handleCommunityDialog(Player player) {
         Location location = player.getLocation()
                 .add(player.getLocation().getDirection().normalize().multiply(2));
+        location.add(0,1,0);
 
-        NpcLogicHandler.getInstance().handlePieter(location, player);
+        NpcLogicHandler.getInstance().handlePieterNpc(location, player);
     }
 
     public void completed(Player player) {
