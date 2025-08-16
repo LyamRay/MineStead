@@ -8,6 +8,7 @@ import me.lyamray.minestead.utils.npc.NpcData;
 import me.lyamray.minestead.utils.npc.Npcs;
 import me.lyamray.minestead.utils.timers.TimerUtil;
 import org.bukkit.Location;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 
 public class NpcLogicHandler {
@@ -18,35 +19,40 @@ public class NpcLogicHandler {
     public void handlePieterNpc(Location location, Player player) {
         handleNpc(location, player, "pieter", NpcData.PIETER,
                 CommunityTutorialMessages.COMMUNITY_TUTORIAL_PIETER_MESSAGE_1.getMessage(player),
-                CommunityTutorialMessages.COMMUNITY_TUTORIAL_PIETER_MESSAGE_2.getMessage(player));
+                CommunityTutorialMessages.COMMUNITY_TUTORIAL_PIETER_MESSAGE_2.getMessage(player)
+        );
     }
 
     public void handleFleurNpc(Location location, Player player) {
         CommunityDialogHandler.getInstance().getPlayerNpcs().remove(player.getUniqueId());
         handleNpc(location, player, "fleur", NpcData.FLEUR,
                 CommunityTutorialMessages.COMMUNITY_TUTORIAL_FLEUR_MESSAGE_1.getMessage(player),
-                CommunityTutorialMessages.COMMUNITY_TUTORIAL_FLEUR_MESSAGE_2.getMessage(player));
+                CommunityTutorialMessages.COMMUNITY_TUTORIAL_FLEUR_MESSAGE_2.getMessage(player)
+        );
     }
 
     public void handleHenkNpc(Location location, Player player) {
         CommunityDialogHandler.getInstance().getPlayerNpcs().remove(player.getUniqueId());
         handleNpc(location, player, "henk", NpcData.HENK,
                 CommunityTutorialMessages.COMMUNITY_TUTORIAL_HENK_MESSAGE_1.getMessage(player),
-                CommunityTutorialMessages.COMMUNITY_TUTORIAL_HENK_MESSAGE_2.getMessage(player));
+                CommunityTutorialMessages.COMMUNITY_TUTORIAL_HENK_MESSAGE_2.getMessage(player)
+        );
     }
 
     public void handleHannaNpc(Location location, Player player) {
         CommunityDialogHandler.getInstance().getPlayerNpcs().remove(player.getUniqueId());
         handleNpc(location, player, "hanna", NpcData.HANNA,
                 CommunityTutorialMessages.COMMUNITY_TUTORIAL_HANNA_MESSAGE_1.getMessage(player),
-                CommunityTutorialMessages.COMMUNITY_TUTORIAL_HANNA_MESSAGE_2.getMessage(player));
+                CommunityTutorialMessages.COMMUNITY_TUTORIAL_HANNA_MESSAGE_2.getMessage(player)
+        );
     }
 
     public void handleDaanNpc(Location location, Player player) {
         CommunityDialogHandler.getInstance().getPlayerNpcs().remove(player.getUniqueId());
         handleNpc(location, player, "daan", NpcData.DAAN,
                 CommunityTutorialMessages.COMMUNITY_TUTORIAL_DAAN_MESSAGE_1.getMessage(player),
-                CommunityTutorialMessages.COMMUNITY_TUTORIAL_DAAN_MESSAGE_2.getMessage(player));
+                CommunityTutorialMessages.COMMUNITY_TUTORIAL_DAAN_MESSAGE_2.getMessage(player)
+        );
     }
 
     public void done(Player player) {
@@ -67,7 +73,8 @@ public class NpcLogicHandler {
 
         TimerUtil.runTaskLater(() -> {
             Npc npc = Npcs.createNpc(npcBaseName + player.getUniqueId(), player.getUniqueId(),
-                    location, npcData.getTexture(), npcData.getDisplayName(), true);
+                    location, true, 100, EntityType.PLAYER, npcData.getTexture(),
+                    npcData.getDisplayName(), true);
 
             CommunityDialogHandler.getInstance().getPlayerNpcs().putIfAbsent(player.getUniqueId(), npc);
 

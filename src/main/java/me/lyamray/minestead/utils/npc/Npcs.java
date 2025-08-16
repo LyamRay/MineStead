@@ -6,19 +6,23 @@ import de.oliver.fancynpcs.api.NpcData;
 import de.oliver.fancynpcs.api.NpcManager;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Location;
+import org.bukkit.entity.EntityType;
 
 import java.util.UUID;
 
 @UtilityClass
 public class Npcs {
 
-    public Npc createNpc(String name, UUID creatorId, Location location, String skin, String displayName, boolean saveToFile) {
+    public Npc createNpc(String name, UUID creatorId, Location location, boolean turnToPlayer, int visibleDistance,
+                         EntityType entityType, String skin, String displayName, boolean saveToFile) {
+
         NpcData data = new NpcData(name, creatorId, location);
 
         data.setSkin(skin);
         data.setDisplayName(displayName);
-        data.setTurnToPlayer(true);
-        data.setVisibilityDistance(100);
+        data.setTurnToPlayer(turnToPlayer);
+        data.setVisibilityDistance(visibleDistance);
+        data.setType(entityType);
 
         Npc npc = FancyNpcsPlugin.get().getNpcAdapter().apply(data);
 
