@@ -16,38 +16,16 @@ public class NpcLogicHandler {
     private static NpcLogicHandler instance = new NpcLogicHandler();
 
     public void handlePieterNpc(Location location, Player player) {
-        if (npcExists("pieter", player)) {
-            Npc npc = Npcs.getNpc("pieter" + player.getUniqueId());
-            Npcs.removeNpc(npc);
-        }
-
-        TimerUtil.runTaskLater(() -> MiniMessage.sendMessage(
-                CommunityTutorialMessages.COMMUNITY_TUTORIAL_PIETER_MESSAGE_1.getMessage(player), player), 20L);
-
-        TimerUtil.runTaskLater(() -> {
-            Npcs.createNpc("pieter" + player.getUniqueId(), player.getUniqueId(),
-                    location, NpcData.PIETER.getTexture(), NpcData.PIETER.getDisplayName(), true);
-            MiniMessage.sendMessage(CommunityTutorialMessages.COMMUNITY_TUTORIAL_PIETER_MESSAGE_2.getMessage(player), player);
-        }, 40L);
+        handleNpc(location, player, "pieter", NpcData.PIETER,
+                CommunityTutorialMessages.COMMUNITY_TUTORIAL_PIETER_MESSAGE_1.getMessage(player),
+                CommunityTutorialMessages.COMMUNITY_TUTORIAL_PIETER_MESSAGE_2.getMessage(player));
     }
 
     public void handleFleurNpc(Location location, Player player) {
-        MiniMessage.clearChat(player);
-
-        if (npcExists("fleur", player)) {
-            Npc npc = Npcs.getNpc("fleur" + player.getUniqueId());
-            Npcs.removeNpc(npc);
-        }
-
-        TimerUtil.runTaskLater(() -> MiniMessage.sendMessage(
-                CommunityTutorialMessages.COMMUNITY_TUTORIAL_FLEUR_MESSAGE_1.getMessage(player), player), 20L);
-
-        TimerUtil.runTaskLater(() -> {
-            MiniMessage.sendMessage(
-                    CommunityTutorialMessages.COMMUNITY_TUTORIAL_FLEUR_MESSAGE_2.getMessage(player), player);
-            Npcs.createNpc("fleur" + player.getUniqueId(), player.getUniqueId(), location, NpcData.PIETER.getTexture(),
-                    NpcData.FLEUR.getDisplayName(), true);
-        }, 40L);
+        MiniMessage.clearChat(player); // clear chat only for Fleur, if needed
+        handleNpc(location, player, "fleur", NpcData.FLEUR,
+                CommunityTutorialMessages.COMMUNITY_TUTORIAL_FLEUR_MESSAGE_1.getMessage(player),
+                CommunityTutorialMessages.COMMUNITY_TUTORIAL_FLEUR_MESSAGE_2.getMessage(player));
     }
 
     public void handleHenkNpc(Location location, Player player) {
@@ -64,6 +42,23 @@ public class NpcLogicHandler {
 
     public void done() {
 
+    }
+
+    private void handleNpc(Location location, Player player, String npcBaseName, NpcData npcData,
+                           String firstMessage, String secondMessage) {
+
+        Npc existing = Npcs.getNpc(npcBaseName + player.getUniqueId());
+        if (existing != null) {
+            Npcs.removeNpc(existing);
+        }
+
+        TimerUtil.runTaskLater(() -> MiniMessage.sendMessage(firstMessage, player), 20L);
+
+        TimerUtil.runTaskLater(() -> {
+            Npcs.createNpc(npcBaseName + player.getUniqueId(), player.getUniqueId(),
+                    location, npcData.getTexture(), npcData.getDisplayName(), true);
+            MiniMessage.sendMessage(secondMessage, player);
+        }, 40L);
     }
 
     private boolean npcExists(String baseName, Player player) {

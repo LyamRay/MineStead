@@ -43,8 +43,9 @@ public class PlayerInteractAtEntityListener implements Listener {
             }
 
             case FLEUR -> {
-                Npcs.createNpc("henk" + player.getUniqueId(), player.getUniqueId(), location, NpcData.PIETER.getTexture(),
-                        NpcData.PIETER.getDisplayName(), true);
+                MiniMessage.sendMessage(CommunityTutorialMessages.COMMUNITY_TUTORIAL_FLEUR_MESSAGE_3.getMessage(player), player);
+                Npc fleurNpc = Npcs.getNpc("fleur" + player.getUniqueId());
+                Npcs.removeNpc(fleurNpc);
                 NpcLogicHandler.getInstance().handleHenkNpc(location, event.getPlayer());
             }
 
