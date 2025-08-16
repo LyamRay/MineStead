@@ -50,16 +50,24 @@ public class PlayerInteractAtEntityListener implements Listener {
             }
 
             case HENK -> {
-                Npcs.createNpc("hanna" + player.getUniqueId(), player.getUniqueId(), location, NpcData.PIETER.getTexture(),
-                        NpcData.PIETER.getDisplayName(), true);
+                MiniMessage.sendMessage(CommunityTutorialMessages.COMMUNITY_TUTORIAL_HENK_MESSAGE_3.getMessage(player), player);
+                Npc henkNpc = Npcs.getNpc("henk" + player.getUniqueId());
+                Npcs.removeNpc(henkNpc);
                 NpcLogicHandler.getInstance().handleHannaNpc(location, event.getPlayer());
             }
             case HANNA -> {
-                Npcs.createNpc("daan" + player.getUniqueId(), player.getUniqueId(), location, NpcData.PIETER.getTexture(),
-                        NpcData.PIETER.getDisplayName(), true);
+                MiniMessage.sendMessage(CommunityTutorialMessages.COMMUNITY_TUTORIAL_HANNA_MESSAGE_3.getMessage(player), player);
+                Npc hannaNpc = Npcs.getNpc("hanna" + player.getUniqueId());
+                Npcs.removeNpc(hannaNpc);
                 NpcLogicHandler.getInstance().handleDaanNpc(location, event.getPlayer());
             }
-            case DAAN -> NpcLogicHandler.getInstance().done();
+
+            case DAAN -> {
+                MiniMessage.sendMessage(CommunityTutorialMessages.COMMUNITY_TUTORIAL_DAAN_MESSAGE_3.getMessage(player), player);
+                Npc daanNpc = Npcs.getNpc("daan" + player.getUniqueId());
+                Npcs.removeNpc(daanNpc);
+                NpcLogicHandler.getInstance().done(player);
+            }
         }
     }
 }

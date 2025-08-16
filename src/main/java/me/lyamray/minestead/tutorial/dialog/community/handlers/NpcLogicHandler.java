@@ -29,19 +29,28 @@ public class NpcLogicHandler {
     }
 
     public void handleHenkNpc(Location location, Player player) {
-
+        CommunityDialogHandler.getInstance().getPlayerNpcs().remove(player.getUniqueId());
+        handleNpc(location, player, "henk", NpcData.HENK,
+                CommunityTutorialMessages.COMMUNITY_TUTORIAL_HENK_MESSAGE_1.getMessage(player),
+                CommunityTutorialMessages.COMMUNITY_TUTORIAL_HENK_MESSAGE_2.getMessage(player));
     }
 
     public void handleHannaNpc(Location location, Player player) {
-
+        CommunityDialogHandler.getInstance().getPlayerNpcs().remove(player.getUniqueId());
+        handleNpc(location, player, "hanna", NpcData.HANNA,
+                CommunityTutorialMessages.COMMUNITY_TUTORIAL_HANNA_MESSAGE_1.getMessage(player),
+                CommunityTutorialMessages.COMMUNITY_TUTORIAL_HANNA_MESSAGE_2.getMessage(player));
     }
 
     public void handleDaanNpc(Location location, Player player) {
-
+        CommunityDialogHandler.getInstance().getPlayerNpcs().remove(player.getUniqueId());
+        handleNpc(location, player, "daan", NpcData.DAAN,
+                CommunityTutorialMessages.COMMUNITY_TUTORIAL_DAAN_MESSAGE_1.getMessage(player),
+                CommunityTutorialMessages.COMMUNITY_TUTORIAL_DAAN_MESSAGE_2.getMessage(player));
     }
 
-    public void done() {
-
+    public void done(Player player) {
+        MiniMessage.sendMessage(CommunityTutorialMessages.COMMUNITY_TUTORIAL_DAAN_MESSAGE_3.getMessage(player), player);
     }
 
     private void handleNpc(Location location, Player player, String npcBaseName, NpcData npcData,
@@ -55,7 +64,7 @@ public class NpcLogicHandler {
         TimerUtil.runTaskLater(() -> {
             MiniMessage.clearChat(player);
             MiniMessage.sendMessage(firstMessage, player);
-        }, 20L);
+        }, 40L);
 
         TimerUtil.runTaskLater(() -> {
             Npc npc = Npcs.createNpc(npcBaseName + player.getUniqueId(), player.getUniqueId(),
@@ -64,7 +73,7 @@ public class NpcLogicHandler {
             CommunityDialogHandler.getInstance().getPlayerNpcs().putIfAbsent(player.getUniqueId(), npc);
 
             MiniMessage.sendMessage(secondMessage, player);
-        }, 60L);
+        }, 80L);
     }
 
     private boolean npcExists(String baseName, Player player) {
