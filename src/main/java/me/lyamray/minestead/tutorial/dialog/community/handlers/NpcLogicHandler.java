@@ -76,7 +76,7 @@ public class NpcLogicHandler {
                     location, true, 100, EntityType.PLAYER, npcData.getTexture(),
                     npcData.getDisplayName(), true);
 
-            CommunityDialogHandler.getInstance().getPlayerNpcs().putIfAbsent(player.getUniqueId(), npc);
+            CommunityDialogHandler.getInstance().getPlayerNpcs().put(player.getUniqueId(), npc);
 
             MiniMessage.sendMessage(secondMessage, player);
         }, 80L);

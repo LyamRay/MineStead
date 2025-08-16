@@ -5,6 +5,7 @@ import de.oliver.fancynpcs.api.Npc;
 import lombok.Getter;
 import lombok.Setter;
 import me.lyamray.minestead.utils.messages.MiniMessage;
+import me.lyamray.minestead.utils.npc.Npcs;
 import me.lyamray.minestead.utils.timers.TimerUtil;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -22,9 +23,10 @@ public class CommunityDialogHandler {
     private HashMap<UUID, Npc> playerNpcs = new HashMap<>();
 
     public void handleCommunityDialog(Player player) {
-        Location location = player.getLocation()
-                .add(player.getLocation().getDirection().normalize().multiply(2));
-        location.add(0, 0.3,0).toCenterLocation();
+
+        Location location = player.getLocation().clone();
+        location.add(player.getLocation().getDirection().setY(0).normalize().multiply(2));
+        location.toCenterLocation();
 
         NpcLogicHandler.getInstance().handlePieterNpc(location, player);
     }
@@ -40,8 +42,9 @@ public class CommunityDialogHandler {
         }, 60L);
     }
 
-    private void cleanUpNpc(Player player)  {
-        FancyNpcsPlugin.get().getNpcManager().removeNpc(playerNpcs.get(player.getUniqueId()));
+    public void cleanUpNpc(Player player)  {
+        //Npc npc = Npcs.getNpc("" + player.getUniqueId());
+        Npcs.removeNpc(playerNpcs.get(player.getUniqueId()));
         playerNpcs.remove(player.getUniqueId());
     }
 
