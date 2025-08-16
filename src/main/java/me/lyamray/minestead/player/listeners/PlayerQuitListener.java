@@ -2,6 +2,7 @@ package me.lyamray.minestead.player.listeners;
 
 import lombok.extern.slf4j.Slf4j;
 import me.lyamray.minestead.database.save.SaveToDatabase;
+import me.lyamray.minestead.tutorial.dialog.community.handlers.CommunityDialogHandler;
 import me.lyamray.minestead.tutorial.dialog.farming.handlers.FarmingDialogHandler;
 import me.lyamray.minestead.utils.npc.Npcs;
 import org.bukkit.entity.Player;
@@ -24,6 +25,7 @@ public class PlayerQuitListener implements Listener {
         try {
             FarmingDialogHandler.getInstance().cleanUpWater(uuid);
             Npcs.removeAllNpcsForPlayer(uuid);
+            CommunityDialogHandler.getInstance().getPlayerNpcs().remove(player.getUniqueId());
         } catch (Exception e) {
             log.warn("Error cleaning up for UUID {}: {}", uuid, e.getMessage(), e);
         }

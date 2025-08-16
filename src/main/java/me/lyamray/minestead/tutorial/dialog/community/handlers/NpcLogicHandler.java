@@ -22,7 +22,7 @@ public class NpcLogicHandler {
     }
 
     public void handleFleurNpc(Location location, Player player) {
-        MiniMessage.clearChat(player);
+        CommunityDialogHandler.getInstance().getPlayerNpcs().remove(player.getUniqueId());
         handleNpc(location, player, "fleur", NpcData.FLEUR,
                 CommunityTutorialMessages.COMMUNITY_TUTORIAL_FLEUR_MESSAGE_1.getMessage(player),
                 CommunityTutorialMessages.COMMUNITY_TUTORIAL_FLEUR_MESSAGE_2.getMessage(player));
@@ -52,13 +52,19 @@ public class NpcLogicHandler {
             Npcs.removeNpc(existing);
         }
 
-        TimerUtil.runTaskLater(() -> MiniMessage.sendMessage(firstMessage, player), 20L);
+        TimerUtil.runTaskLater(() -> {
+            MiniMessage.clearChat(player);
+            MiniMessage.sendMessage(firstMessage, player);
+        }, 20L);
 
         TimerUtil.runTaskLater(() -> {
-            Npcs.createNpc(npcBaseName + player.getUniqueId(), player.getUniqueId(),
+            Npc npc = Npcs.createNpc(npcBaseName + player.getUniqueId(), player.getUniqueId(),
                     location, npcData.getTexture(), npcData.getDisplayName(), true);
+
+            CommunityDialogHandler.getInstance().getPlayerNpcs().putIfAbsent(player.getUniqueId(), npc);
+
             MiniMessage.sendMessage(secondMessage, player);
-        }, 40L);
+        }, 60L);
     }
 
     private boolean npcExists(String baseName, Player player) {

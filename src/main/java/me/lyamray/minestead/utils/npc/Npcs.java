@@ -12,11 +12,13 @@ import java.util.UUID;
 @UtilityClass
 public class Npcs {
 
-    public void createNpc(String name, UUID creatorId, Location location, String skin, String displayName, boolean saveToFile) {
+    public Npc createNpc(String name, UUID creatorId, Location location, String skin, String displayName, boolean saveToFile) {
         NpcData data = new NpcData(name, creatorId, location);
 
         data.setSkin(skin);
         data.setDisplayName(displayName);
+        data.setTurnToPlayer(true);
+        data.setVisibilityDistance(100);
 
         Npc npc = FancyNpcsPlugin.get().getNpcAdapter().apply(data);
 
@@ -26,6 +28,7 @@ public class Npcs {
 
         npc.create();
         npc.spawnForAll();
+        return npc;
     }
 
     public void updateNpc(Npc npc, String skin, String displayName) {

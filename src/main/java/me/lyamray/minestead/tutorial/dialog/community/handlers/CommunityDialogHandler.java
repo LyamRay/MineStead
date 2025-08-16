@@ -24,7 +24,6 @@ public class CommunityDialogHandler {
     public void handleCommunityDialog(Player player) {
         Location location = player.getLocation()
                 .add(player.getLocation().getDirection().normalize().multiply(2));
-        location.add(0,1,0);
 
         NpcLogicHandler.getInstance().handlePieterNpc(location, player);
     }
