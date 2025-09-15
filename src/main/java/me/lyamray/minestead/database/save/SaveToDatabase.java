@@ -10,7 +10,7 @@ import me.lyamray.minestead.database.Database;
 import me.lyamray.minestead.animal.data.AnimalData;
 import me.lyamray.minestead.player.data.PlayerData;
 import me.lyamray.minestead.player.data.PlayerDataHandler;
-import me.lyamray.minestead.utils.async.Async;
+import me.lyamray.minestead.utils.tasks.Task;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -27,19 +27,19 @@ public class SaveToDatabase {
     private final Database database = Database.getInstance().getDatabase();
 
     public void savePlayerDataAsync(UUID uuid) {
-        Async.runAsync(MineStead.getInstance(), () -> savePlayerData(uuid));
+        Task.runAsync(MineStead.getInstance(), () -> savePlayerData(uuid));
     }
 
     public void saveAnimalDataAsync(UUID uuid) {
-        Async.runAsync(MineStead.getInstance(), () -> saveAnimalData(uuid));
+        Task.runAsync(MineStead.getInstance(), () -> saveAnimalData(uuid));
     }
 
     public void saveAllPlayerDataAsync() {
-        Async.runAsync(MineStead.getInstance(), this::saveAllPlayerData);
+        Task.runAsync(MineStead.getInstance(), this::saveAllPlayerData);
     }
 
     public void saveAllAnimalDataAsync() {
-        Async.runAsync(MineStead.getInstance(), this::saveAllAnimalData);
+        Task.runAsync(MineStead.getInstance(), this::saveAllAnimalData);
     }
 
     public void saveAllPlayerDataSync() {

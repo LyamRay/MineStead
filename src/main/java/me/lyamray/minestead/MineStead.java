@@ -15,7 +15,7 @@ import me.lyamray.minestead.tutorial.dialog.farming.listeners.PlayerInteractList
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.Arrays;
+import java.util.stream.Stream;
 
 @Slf4j
 public final class MineStead extends JavaPlugin {
@@ -42,17 +42,18 @@ public final class MineStead extends JavaPlugin {
     }
 
     private void registerListeners() {
-        Arrays.asList(
-                new PlayerPreLoginListener(),
-                new PlayerJoinListener(),
-                new PlayerQuitListener(),
-                new PlayerMoveListener(),
-                new PlayerDrinkPotionListener(),
-                new PlayerDropItemListener(),
-                new PlayerItemSwapListener(),
-                new BlockPhysicsListener(),
-                new PlayerInteractListener(),
-                new PlayerInteractAtEntityListener()
+        Stream.of(
+                PlayerDrinkPotionListener.getInstance(),
+                PlayerDropItemListener.getInstance(),
+                PlayerInventoryClickListener.getInstance(),
+                PlayerItemSwapListener.getInstance(),
+                PlayerJoinListener.getInstance(),
+                PlayerMoveListener.getInstance(),
+                PlayerPreLoginListener.getInstance(),
+                PlayerQuitListener.getInstance(),
+                PlayerInteractAtEntityListener.getInstance(),
+                PlayerInteractListener.getInstance(),
+                BlockPhysicsListener.getInstance()
         ).forEach(listener -> Bukkit.getPluginManager().registerEvents(listener, this));
     }
 

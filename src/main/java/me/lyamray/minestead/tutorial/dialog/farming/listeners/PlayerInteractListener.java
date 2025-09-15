@@ -1,5 +1,7 @@
 package me.lyamray.minestead.tutorial.dialog.farming.listeners;
 
+import lombok.Getter;
+import me.lyamray.minestead.player.listeners.PlayerPreLoginListener;
 import me.lyamray.minestead.tutorial.dialog.farming.handlers.FarmingDialogHandler;
 import me.lyamray.minestead.tutorial.dialog.start.StartTutorial;
 import me.lyamray.minestead.utils.items.ItemStacks;
@@ -12,6 +14,9 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 
 public class PlayerInteractListener implements Listener {
+
+    @Getter
+    private static final PlayerInteractListener instance = new PlayerInteractListener();
 
     @EventHandler
     public void onBottleFill(PlayerInteractEvent event) {

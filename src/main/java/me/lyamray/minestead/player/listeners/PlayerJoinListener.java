@@ -1,5 +1,6 @@
 package me.lyamray.minestead.player.listeners;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import me.lyamray.minestead.player.data.PlayerData;
 import me.lyamray.minestead.player.data.PlayerDataHandler;
@@ -17,7 +18,8 @@ import java.util.UUID;
 
 @Slf4j
 public class PlayerJoinListener implements Listener {
-
+    @Getter
+    private static final PlayerJoinListener instance = new PlayerJoinListener();
     @EventHandler
     public void playerJoins(PlayerJoinEvent event) {
         Player player = event.getPlayer();

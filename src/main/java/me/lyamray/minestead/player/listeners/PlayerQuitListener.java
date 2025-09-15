@@ -1,5 +1,6 @@
 package me.lyamray.minestead.player.listeners;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import me.lyamray.minestead.database.save.SaveToDatabase;
 import me.lyamray.minestead.tutorial.dialog.community.handlers.CommunityDialogHandler;
@@ -14,7 +15,8 @@ import java.util.UUID;
 
 @Slf4j
 public class PlayerQuitListener implements Listener {
-
+    @Getter
+    private static final PlayerQuitListener instance = new PlayerQuitListener();
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();

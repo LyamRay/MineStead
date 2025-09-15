@@ -3,7 +3,6 @@ package me.lyamray.minestead.player.listeners;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import me.lyamray.minestead.database.load.LoadFromDatabase;
-import me.lyamray.minestead.player.data.PlayerData;
 import me.lyamray.minestead.player.data.PlayerDataHandler;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

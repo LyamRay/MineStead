@@ -2,6 +2,7 @@ package me.lyamray.minestead.tutorial.dialog.community.listeners;
 
 import de.oliver.fancynpcs.api.Npc;
 import de.oliver.fancynpcs.api.events.NpcInteractEvent;
+import lombok.Getter;
 import me.lyamray.minestead.tutorial.dialog.community.handlers.CommunityDialogHandler;
 import me.lyamray.minestead.tutorial.dialog.community.handlers.NpcLogicHandler;
 import me.lyamray.minestead.tutorial.dialog.community.messages.CommunityTutorialMessages;
@@ -13,6 +14,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 public class PlayerInteractAtEntityListener implements Listener {
+
+    @Getter
+    private static final PlayerInteractAtEntityListener instance = new PlayerInteractAtEntityListener();
 
     @EventHandler
     public void onNpcInteract(NpcInteractEvent event) {

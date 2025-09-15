@@ -9,7 +9,7 @@ import me.lyamray.minestead.animal.data.AnimalDataHandler;
 import me.lyamray.minestead.database.Database;
 import me.lyamray.minestead.animal.data.AnimalData;
 import me.lyamray.minestead.player.data.PlayerData;
-import me.lyamray.minestead.utils.async.Async;
+import me.lyamray.minestead.utils.tasks.Task;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -27,17 +27,17 @@ public class LoadFromDatabase {
     private final Database database = Database.getInstance().getDatabase();
 
     public void loadPlayerDataAsync(UUID uuid, Consumer<PlayerData> callback) {
-        Async.runAsync(MineStead.getInstance(), () -> {
+        Task.runAsync(MineStead.getInstance(), () -> {
             PlayerData data = loadPlayerData(uuid);
-            Async.runSync(MineStead.getInstance(), () -> callback.accept(data));
+            Task.runSync(MineStead.getInstance(), () -> callback.accept(data));
         });
     }
 
     public void loadAnimalDataAsync(Runnable afterLoad) {
-        Async.runAsync(MineStead.getInstance(), () -> {
+        Task.runAsync(MineStead.getInstance(), () -> {
             loadAnimalData();
             if (afterLoad != null) {
-                Async.runSync(MineStead.getInstance(), afterLoad);
+                Task.runSync(MineStead.getInstance(), afterLoad);
             }
         });
     }

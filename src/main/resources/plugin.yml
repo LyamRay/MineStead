@@ -1,5 +1,5 @@
 name: MineStead
-version: '1.0'
+version: ${version}
 main: me.lyamray.minestead.MineStead
 api-version: '1.21'
 load: STARTUP

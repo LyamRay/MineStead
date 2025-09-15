@@ -1,12 +1,14 @@
 package me.lyamray.minestead.player.listeners;
 
+import lombok.Getter;
 import me.lyamray.minestead.tutorial.dialog.start.StartTutorial;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
 
 public class PlayerDropItemListener implements Listener {
-
+    @Getter
+    private static final PlayerDropItemListener instance = new PlayerDropItemListener();
     @EventHandler
     public void onItemDropEvent(PlayerDropItemEvent event) {
         if (StartTutorial.getInstance().getHasAcceptedTutorial().containsKey(event.getPlayer().getUniqueId())) {

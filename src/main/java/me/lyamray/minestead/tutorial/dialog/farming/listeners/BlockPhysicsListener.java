@@ -1,5 +1,7 @@
 package me.lyamray.minestead.tutorial.dialog.farming.listeners;
 
+import lombok.Getter;
+import me.lyamray.minestead.player.listeners.PlayerPreLoginListener;
 import me.lyamray.minestead.tutorial.dialog.farming.handlers.FarmingDialogHandler;
 import me.lyamray.minestead.tutorial.dialog.start.StartTutorial;
 import org.bukkit.Location;
@@ -9,6 +11,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockFromToEvent;
 
 public class BlockPhysicsListener implements Listener {
+
+    @Getter
+    private static final BlockPhysicsListener instance = new BlockPhysicsListener();
 
     @EventHandler
     public void onWaterFlow(BlockFromToEvent event) {
