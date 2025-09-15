@@ -5,6 +5,7 @@ import de.oliver.fancynpcs.api.Npc;
 import de.oliver.fancynpcs.api.NpcData;
 import de.oliver.fancynpcs.api.NpcManager;
 import lombok.experimental.UtilityClass;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 
@@ -14,7 +15,7 @@ import java.util.UUID;
 public class Npcs {
 
     public Npc createNpc(String name, UUID creatorId, Location location, boolean turnToPlayer, int visibleDistance,
-                         EntityType entityType, String skin, String displayName, boolean saveToFile) {
+                         EntityType entityType, boolean glowing, NamedTextColor color, String skin, String displayName, boolean saveToFile) {
 
         NpcData data = new NpcData(name, creatorId, location);
 
@@ -23,6 +24,11 @@ public class Npcs {
         data.setTurnToPlayer(turnToPlayer);
         data.setVisibilityDistance(visibleDistance);
         data.setType(entityType);
+        data.setGlowing(glowing);
+
+        if (color != null) {
+            data.setGlowingColor(color);
+        }
 
         Npc npc = FancyNpcsPlugin.get().getNpcAdapter().apply(data);
 

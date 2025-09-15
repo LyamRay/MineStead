@@ -65,7 +65,7 @@ tasks.register('bumpVersion') {
 }
 
 tasks.named('jar') {
-    destinationDirectory.set(file("C:/Users/lyamr/Desktop/Server/plugins"))
+    destinationDirectory.set(file("C:/Users/lyamr/Desktop/MineStead-Server/plugins"))
     archiveFileName.set("${project.name}-${project.version}.jar")
 
     doFirst {

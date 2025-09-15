@@ -10,15 +10,17 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import java.util.UUID;
 
 public class PlayerMoveListener implements Listener {
+
     @Getter
     private static final PlayerMoveListener instance = new PlayerMoveListener();
+
     @EventHandler
     public void playerMoveEvent(PlayerMoveEvent event) {
         Player player = event.getPlayer();
         UUID uuid = player.getUniqueId();
 
-        if (StartTutorial.getInstance().getHasAcceptedTutorial().containsKey(uuid)) {
-            event.setTo(event.getFrom().setDirection(event.getTo().getDirection()));
-        }
+//        if (StartTutorial.getInstance().getHasAcceptedTutorial().containsKey(uuid)) {
+//            event.setTo(event.getFrom().setDirection(event.getTo().getDirection()));
+//        }
     }
 }

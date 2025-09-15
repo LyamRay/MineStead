@@ -23,28 +23,14 @@ public class StartTutorial {
 
     private HashMap<UUID, Boolean> hasAcceptedTutorial = new HashMap<>();
 
-    public Dialog createStartDialog() {
-        return DialogTemplate.getInstance().createDialogWithCallbacks(
-                "<gradient:#c89651:#8adb9a>Welkom op MineStead!</gradient>",
-                "<gradient:#b2ac9f:#abc4b9>Welkom op MineStead! Laten we starten bij de basics. " +
-                        "Je zal leren hoe de game werkt, hoe je quests moet doen en hoe je planten/dieren zult moeten verzorgen!</gradient>",
-                "<color:#c9ffe2>Start de tutorial.</color>",
-                "<color:#84968d>Klik hier om de tutorial te starten!</color>",
-                100,
-                (view, audience) -> {
-                    if (audience instanceof Player player) {
-                        handleStartTutorial(player);
-                    }
-                },
-                "<color:#b2ac9f>Skip de tutorial.</color>",
-                "<color:#9c978e>Klik hier om de tutorial te skippen!</color>",
-                100,
-                (view, audience) -> {
-                    if (audience instanceof Player player) {
-                        handleSkipTutorial(player);
-                    }
-                }
-        );
+    public Dialog createStartDialog(Player player) {
+        return DialogTemplate.builder()
+                .title("<gradient:#c89651:#8adb9a>Welkom op MineStead!</gradient>")
+                .body("<gradient:#b2ac9f:#abc4b9>Welkom op MineStead! Laten we starten bij de basics. " +
+                        "Je zal leren hoe de game werkt, hoe je quests moet doen en hoe je planten/dieren zult moeten verzorgen!</gradient>")
+                .positive("<color:#c9ffe2>Start de tutorial.</color>", (p, view) -> handleStartTutorial(player))
+                .negative("<color:#b2ac9f>Skip de tutorial.</color>", (p, view) -> handleSkipTutorial(player))
+                .build();
     }
 
     private void handleStartTutorial(Player player) {
@@ -55,7 +41,7 @@ public class StartTutorial {
     }
 
     private void handleSkipTutorial(Player player) {
-        StartTutorial.getInstance().getHasAcceptedTutorial().remove(player.getUniqueId());
+        hasAcceptedTutorial.remove(player.getUniqueId());
         player.closeDialog();
         MiniMessage.sendMessage(SharedTutorialMessages.TUTORIAL_SKIPPED.getMessage(player), player);
         EndTutorial.getInstance().tutorialEnded(player);

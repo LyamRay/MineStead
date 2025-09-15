@@ -39,7 +39,7 @@ public class PlayerJoinListener implements Listener {
 
             if (!playerData.isTutorialFinished()) {
                 player.getInventory().clear();
-                player.showDialog(StartTutorial.getInstance().createStartDialog());
+                player.showDialog(StartTutorial.getInstance().createStartDialog(player));
             }
 
         } catch (Exception e) {

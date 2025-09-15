@@ -7,6 +7,7 @@ import me.lyamray.minestead.utils.messages.MiniMessage;
 import me.lyamray.minestead.utils.npc.NpcData;
 import me.lyamray.minestead.utils.npc.Npcs;
 import me.lyamray.minestead.utils.timers.TimerUtil;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Location;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -73,7 +74,7 @@ public class NpcLogicHandler {
 
         TimerUtil.runTaskLater(() -> {
             Npc npc = Npcs.createNpc(npcBaseName + player.getUniqueId(), player.getUniqueId(),
-                    location, true, 100, EntityType.PLAYER, npcData.getTexture(),
+                    location, true, 100, EntityType.PLAYER, false, null,npcData.getTexture(),
                     npcData.getDisplayName(), true);
 
             CommunityDialogHandler.getInstance().getPlayerNpcs().put(player.getUniqueId(), npc);

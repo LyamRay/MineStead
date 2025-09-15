@@ -13,18 +13,15 @@ public class StartFarmingDialog {
     private static StartFarmingDialog instance = new StartFarmingDialog();
 
     public void startFarmingTutorial(Player player) {
-        Dialog farmingDialog = DialogTemplate.getInstance().createDialogWithCallbacks(
-                "<gradient:#c89651:#8adb9a>Start jouw eigen moestuin!</gradient>",
-                "<gradient:#b2ac9f:#abc4b9>Het beheren, verzorgen en onderhouden van jouw moestuin is de sleutel van een goede homestead.</gradient>",
-                "<color:#c9ffe2>Toon me hoe!</color>",
-                "<color:#84968d>Klik hier om te leren hoe je moet planten, water geven en je planten te oogsten!</color>",
-                100,
-                (response, audience) -> FarmingDialogHandler.getInstance().handleFarmingDialog(player),
-                "<color:#d1c6ae>Ik weet dit al!</color>",
-                "<color:#9c978e>Klik hier om dit stukje van de tutorial over te slaan!</color>",
-                100,
-                (response, audience) -> StartCommunityDialog.getInstance().startCommunityQuestTutorial(player)
-        );
+        Dialog farmingDialog = DialogTemplate.builder()
+                .title("<gradient:#c89651:#8adb9a>Start jouw eigen moestuin!</gradient>")
+                .body("<gradient:#b2ac9f:#abc4b9>Het beheren, verzorgen en onderhouden van jouw moestuin is de sleutel van een goede homestead.</gradient>")
+                .positive("<color:#c9ffe2>Toon me hoe!</color>", "<color:#84968d>Klik hier om te leren hoe je moet planten, water geven en je planten te oogsten!</color>", 100,
+                        (response, audience) -> FarmingDialogHandler.getInstance().handleFarmingDialog(player))
+                .negative("<color:#d1c6ae>Ik weet dit al!</color>", "<color:#9c978e>Klik hier om dit stukje van de tutorial over te slaan!</color>", 100,
+                        (response, audience) -> StartCommunityDialog.getInstance().startCommunityQuestTutorial(player))
+                .build();
+
         player.showDialog(farmingDialog);
     }
 }
